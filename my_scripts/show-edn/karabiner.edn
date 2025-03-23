@@ -1,0 +1,146 @@
+
+
+    ;; !  | means mandatory -   modifier(s) alone when pressend change behavior
+    ;; #  | means optional  -   modifiers are optional (but atleast one necessary)
+
+    ;; :!Ca is keycode :a and prefix a with !C`
+
+    ;; C  | left_command
+    ;; T  | left_control
+    ;; O  | left_option
+    ;; S  | left_shift
+    ;; F  | fn
+    ;; Q  | right_command
+    ;; W  | right_control
+    ;; E  | right_option
+    ;; R  | right_shift
+
+    ;; ## | optional any
+    ;; !! | command + control + optional + shift (hyper)
+
+    ;; to understand better how modifiers work in karabiner
+    ;; karabiner definition of mandatory and optional
+    ;; https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/from/modifiers/
+
+
+    ;; need to prefix C T O S F with ! or #
+    ;;
+    ;; code for all this :
+    ;; https://github.com/yqrashawn/GokuRakuJoudo/blob/b9b334a187379f9bc8182ad59e2cca2a1789e9c0/src/karabiner_configurator/keys.clj#L68
+
+
+{:devices {:magic_keyboard [{:vendor_id 76 :product_id 615}]
+           :teck [{:vendor_id 9610 :product_id 22}]
+           :kc_q0 [{:vendor_id 13364 :product_id 304}]
+           :sofle [{:vendor_id 64562 :product_id 647}]}
+ :profiles {:Default {:default true
+                      :sim 150
+                      :delay 500
+                      :alone 1000
+                      :held 500}}
+
+ :templates {
+            :open-path "open \"%s\""
+             :open "osascript -e 'tell application \"%s\" to activate'"
+
+             :go_to_url "osascript -e 'open location \"%s\"'"
+             }
+ 
+ :layers {:hyper-mode {:key :right_option :alone {:key :escape}}}
+
+ :simlayers {:w-mode {:key :w}
+             :o-mode {:key :o}}
+ 
+
+
+ :applications {:mac-terminal ["^com\\.apple\\.Terminal$"]
+                :iterm2 ["^com\\.googlecode\\.iterm2$"]
+                :chrome ["^com\\.google\\.Chrome$"]
+                :brave ["^com\\.brave\\.Browser$"]
+                :firefox ["^org\\.mozilla\\.firefox$"]
+                :browsers ["^com\\.google\\.Chrome$" "^com\\.brave\\.Browser$" "^org\\.mozilla\\.firefox$"]
+                :emacs ["^org\\.gnu\\.Emacs$"]
+                :mvim ["^org\\.vim\\.MacVim$"]
+                :intellij ["^com\\.jetbrains\\.intellij$"]
+                :finder ["^com\\.apple\\.finder$"]
+                :notes ["^com\\.apple\\.Notes$"]
+                :vscode ["^com\\.microsoft\\.VSCode$"]
+                :unix-like ["^com\\.apple\\.Terminal$" "^com\\.googlecode\\.iterm2$" "^org\\.gnu\\.Emacs$" "^org\\.vim\\.MacVim$"]
+                :all-terminals ["^com\\.apple\\.Terminal$" "^com\\.googlecode\\.iterm2$"]}
+
+ :main [
+        {:des "Shift Press Alone to change input source"
+         :rules [[:right_command :right_control nil]]}
+
+        {:des "XXXXX"
+         :rules [[:f16 :!COTright_shift nil]]}
+
+        {:des "XXXXXxxx"
+         :rules [[:f17 :!Cleft_control nil]]}
+
+        {:des "Shift Press Alone to change input source"
+         :rules [[:right_shift :right_option nil {:alone :!Qspacebar}]]}
+
+        {:des "caps_lock to control"
+         :rules [[:caps_lock :right_control nil]]}
+
+
+        {:des "Change right_option to 4 modifiers combination, f19 when used alone"
+         :rules [[:right_option :!COTright_shift nil {:alone [:f18]}]]}
+
+
+
+
+
+        {:des "app"
+         :rules [[:!To :!Cl                     [:browsers]]
+                 [:!Tcomma :!Cleft_arrow        [:browsers]]
+                 [:!Tperiod :!Cright_arrow      [:browsers]]
+                 ; [:!TCj         [:escape :b]            [:iterm2]] ;; move back word
+                 ; [:!TCsemicolon [:escape :f]            [:iterm2]] ;; move forward word
+                 ; [:!TSclose_bracket :!CSclose_bracket   [:iterm2]] ;; Next tab
+                 ; [:!TSopen_bracket :!CSopen_bracket     [:iterm2]] ;; Prev tab
+                 ]}
+
+        {:des "w-mode trigger script with w + ,"
+        :rules [:w-mode
+                [:comma ["!osascript ~/my_scripts/apple_scripts/run_wmode.scpt"]]]}
+
+        {:des   "w - launch mode"
+         :rules [:w-mode
+                 [:y [:open-path  "/Applications/Sublime Text.app"]]
+                 [:u [:open-path "/Applications/Xcode.app"]]
+                 [:i [:open-path  "/Applications/Visual Studio Code.app"]]
+                 [:o [:open-path  "/Applications/Cursor.app"]]
+
+                 ; [:j [:open-path  "/Applications/Sublime Text.app"]]
+                 [:k [:open-path  "/Applications/MWeb.app"]]
+                 [:l [:open-path  "/Applications/Lark.app"]]
+                 ; [:n [:open-path  "/Applications/Talky.app/"]]
+                 [:m [:open-path  "/Applications/GitHub Desktop.app"]]
+                 ]
+
+         }
+
+        {:des   "o-launch mode"
+         :rules [:o-mode
+                 [:q [:open-path  "/System/Applications/Notes.app"]]
+                 [:w [:open-path  "/Applications/WeChat.app"]]
+                 [:e [:open-path  "/Applications/Slack.app"]]
+                 [:r [:open-path "/Applications/GitHub Desktop.app"]]
+                 [:t [:open-path  "/Applications/kitty.app/"]]
+                 [:a [:open-path  "/Applications/LM Studio.app/"]]
+                 [:s [:open-path  "/Applications/Cursor.app/"]] 
+                 [:f [:open-path  "/Applications/Firefox.app"]]
+                 [:g [:open-path  "/System/Library/CoreServices/Finder.app"]]
+                 [:c [:open-path  "/Applications/Google Chrome.app"]]
+                 ]} 
+{:des   "hyper-launch mode"
+         :rules [:hyper-mode
+                 [:left_control [:open "Visual Studio Code"]] 
+
+                 [:c [:open-path  "/Applications/Google Chrome.app"]]
+             ]} 
+                 ]
+
+}
