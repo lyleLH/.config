@@ -1,0 +1,49 @@
+#bsp ,stack,float
+yabai -m config layout bsp
+
+yabai -m config window_replacement second_child
+
+#padding 
+yabai -m config top_padding 6 
+yabai -m config bottom_padding 6 
+yabai -m config left_padding 6 
+yabai -m config right_padding 6 
+yabai -m config window_padding 6 
+
+#mouse settings
+
+yabai -m config mouse_follow_focus on 
+
+yabai -m config mouse_modifier alt
+
+#left click + drag
+
+yabai -m config mouse_action1 move
+
+
+#right click + drag
+
+yabai -m config mouse_action2 resize
+
+
+# when window is dropped in center of another window, swap them (on edges it will split it)
+yabai -m mouse_drop_action swap 
+
+#
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Karabiner-Elements$" manage=off
+yabai -m rule --add app="^WeChat$" manage=off
+yabai -m rule --add app="^iTerm$" manage=off
+yabai -m rule --add app="^Raycast$" manage=off
+yabai -m rule --add app="^Clash for Windows$" manage=off
+yabai -m rule --add app="^Activigy Monitor$" manage=off
+yabai -m rule --add app="^Clash for Windows$" manage=off
+yabai -m rule --add app="^Raycast$" manage=off
+yabai -m rule --add app="^Alfred$" manage=off
+yabai -m rule --add app="^OBS Studio$" manage=off
+
+
+
+

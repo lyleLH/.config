@@ -1,0 +1,28 @@
+[
+  {
+    "name" : "Rena",
+    "id" : "022668DD-A10A-4CD7-ADB4-786ED7104828",
+    "shortcut" : {
+      "modifiers" : 524288,
+      "keyCode" : 15
+    },
+    "apps" : [
+      "PyCharm CE",
+      "Cursor"
+    ],
+    "display" : "LG HDR 4K"
+  },
+  {
+    "apps" : [
+      "Cursor",
+      "Google Chrome"
+    ],
+    "id" : "99D531B0-A43D-4D34-88F3-91F33C2043A6",
+    "name" : "hevaral",
+    "display" : "LG HDR 4K",
+    "shortcut" : {
+      "modifiers" : 524288,
+      "keyCode" : 4
+    }
+  }
+]

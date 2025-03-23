@@ -1,0 +1,54 @@
+source $HOME/antigen.zsh
+    
+# # Load the oh-my-zsh's library
+# antigen use oh-my-zsh
+#
+# antigen bundle <<EOBUNDLES
+#     # Bundles from the default repo (robbyrussell's oh-my-zsh)
+#     git
+#
+#     # Syntax highlighting bundle.
+#     zsh-users/zsh-syntax-highlighting
+#
+#     # Fish-like auto suggestions
+#     zsh-users/zsh-autosuggestions
+#
+#     # Extra zsh completions
+#     zsh-users/zsh-completions
+# EOBUNDLES
+#
+# # Load the theme
+# antigen theme robbyrussell
+#
+# # Tell antigen that you're done
+# antigen apply
+#
+
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+antigen bundle git
+antigen bundle heroku
+antigen bundle pip
+antigen bundle lein
+antigen bundle command-not-found
+
+antigen bundle zsh-users/zsh-autosuggestions
+
+# Syntax highlighting bundle.
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# 代码提示功能
+antigen bundle zsh-users/zsh-autosuggestions
+
+antigen bundle agkozak/zsh-z
+
+# Load the theme.
+# antigen theme robbyrussell
+# antigen theme romkatv/powerlevel10k
+antigen theme sindresorhus/pure@main
+# Tell Antigen that you're done.
+antigen apply
+
+

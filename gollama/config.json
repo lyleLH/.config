@@ -1,0 +1,20 @@
+{
+  "columns": [
+    "Name",
+    "Size",
+    "Quant",
+    "Family",
+    "Modified",
+    "ID"
+  ],
+  "docker_container": "",
+  "editor": "/usr/bin/vim",
+  "lm_studio_file_paths": "/Users/hao92/.lmstudio/models",
+  "log_file_path": "",
+  "log_level": "info",
+  "ollama_api_key": "",
+  "ollama_api_url": "http://127.0.0.1:11434",
+  "sort_order": "modified",
+  "strip_string": "",
+  "theme": "dark-neon"
+}

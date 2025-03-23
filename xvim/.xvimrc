@@ -1,0 +1,331 @@
+set debug
+
+" VIM SETTINGS <(
+" 搜索忽略大小写
+set ignorecase
+" 高亮搜索
+set hlsearch
+" 显示行号和列号
+set ruler
+" 不显示状态行
+" set laststatus=0
+" 共用剪贴板
+" set clipboard=unnamed
+set number
+" 开启相对行号
+set relativenumber
+set colorcolumn=+1
+" 分隔窗口在当前窗口右边/下边
+set splitright
+set splitbelow
+" 高亮匹配括号
+set showmatch
+" 滚动
+set scrolljump=5
+set scrolloff=8
+")>
+
+
+" Sets Space to Leader.
+
+" map <Space> ,
+" nnoremap , <leader>
+
+
+
+" Comment Lines"
+nmap gcc :xcmenucmd Comment Selection<CR>
+vmap gc :xcmenucmd Comment Selection<CR>
+
+
+" ======= Xcode with Xvim specific mappings =======
+
+" Open quickly menu.
+nmap ,ff :xcmenucmd Open Quickly...<CR>
+" nmap <leader>ff :xcmenucmd Open Quickly...<CR>
+" Find word in the whole workspace.
+nmap ,F "*viw:xccmd findSelectedTextInWorkspace<CR>
+
+
+nnoremap ,pr :xccmd revealInProjectNavigator<CR>
+" Show a quick-selection list of the properties, methods and comments in
+" current file.
+nmap ,' :xcmenucmd Show Document Items<CR>
+
+" Show a quick-selection list of files in the same group of the current file.
+nmap ," :xcmenucmd Show Group Files<CR>
+nmap ,jj :xcmenucmd Show Navigator<CR>
+
+" Extract selected lines into a method.
+vmap ,e :xcmenucmd Extract to Method<CR>
+
+" Extract selected lines into a variable.
+vmap ,v :xcmenucmd Extract to Variable<CR>
+
+" Rename word under the cursor.
+nmap ,r :xcmenucmd Rename...<CR>
+
+" Jump to the next/previous Swift function declaration. I have to do this with
+" a regex because XVim does not support the built-in Vim mapping to jump to the
+" next function.
+nnoremap ,n $/func.*\(.*\).*\{<CR>^
+nnoremap ,N ?func.*\(.*\).*\{<CR>^
+
+
+
+" Toggle a breakpoint at the current line
+" nmap ,b :xccmd toggleBreakpointAtCurrentLine<CR>
+
+
+" Show
+" nmap ,hi :xcmenucmd History...<CR>
+nmap ,gv :xccmd showInFinder<CR>
+" nmap ,D :xccmd showDeveloperDocumentation<CR>
+"nmap ,d :xcmenucmd Quick Help for Selected Item<CR>
+
+" Toggle Toolbars
+" nmap ,h :xccmd toggleNavigatorsVisibility<CR>
+nmap ,dd :xccmd toggleDebuggerVisibility<CR>
+" nmap ,l :xccmd toggleUtilitiesVisibility<CR>
+
+nmap ,ft :xccmd toggleNavigatorsVisibility<CR>
+
+nmap ,ft :xccmd toggleNavigatorsVisibility<CR>
+
+
+" Building
+nmap ,C :xmenucmd Clean<cr>
+nmap ,D :xcmenucmd Build<cr>
+nmap ,R :xcmenucmd Run<cr>
+
+" Tabs
+" nnoremap ,nt :xccmd newTab<cr>
+" nnoremap ,tp :xccmd selectPreviousTab<cr>
+" nnoremap ,tn :xccmd selectNextTab<cr>
+nnoremap ,sx :xcmenucmd Close Tab<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Copy/Paste
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Better copy and paste
+set pastetoggle=<F2>
+
+" Paste mode - insert typed text literally
+set paste
+
+" Use the system pasteboard
+set pasteboard
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Indentation
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Number of spaces for a tab
+"set tabstop=4
+
+" Number of spaces for soft tab
+"set softtabstop=4
+
+" Number of spaces for shifting text
+"set shiftwidth=4
+
+" Inserting a tab inserts spaces
+"set sta
+
+" Expand tabs to spaces in insert mode
+"set expandtab
+
+" Turn on autoindent
+"set ai
+
+" Turn on smartindent
+"set si
+
+" Turn on c indent
+" set cin
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Commands
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Command line history
+"set history=700
+
+" Number of undo changes to keep track of
+"set ul=700
+
+" Display incomplete commands
+"set showcmd
+
+" Some commands jump to first non-blank character
+"set sol
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Searching
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Highlight all matches
+set hlsearch
+
+" Incremental searching
+set incsearch
+
+" Dont ignore case while searching
+"set noic
+
+" Ignore case while searching
+set ignorecase
+
+" Intelligently override ignorecase
+set smartcase
+
+" Wrap searches
+set wrapscan
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Display
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" No status bar
+" set laststatus=0
+
+" Show the cursor position all the time
+set ruler
+
+" Dont wrap text across lines
+set nowrap
+
+" Dont wrap text while typing
+"set fo-=t
+
+" Help window height
+"set hh=15
+
+" Remove toolbar
+"set guioptions-=T
+
+" Show matching brackets briefly during inserting
+"set sm
+
+" Tenths of seconds to show match
+"set mat=5
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Backspace
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Backspace and cursor keys wrap to previous/next line
+"set backspace=indent,eol,start whichwrap+=<,>,[,]
+
+" Backspace in Visual mode deletes selection
+"vnoremap <BS> d
+
+
+" " options
+" set ignorecase
+" set smartcase
+"
+" " vim specific
+" inoremap jk <ESC>
+" inoremap jK <ESC>
+" inoremap Jk <ESC>
+" inoremap JK <ESC>
+" nnoremap Y y$
+" vnoremap < <gv
+" vnoremap > >gv
+" cnoremap <c-n> <down>
+" cnoremap <c-p> <up>
+" cnoremap <c-a> <home>
+" cnoremap <c-e> <end>
+" " nnoremap <c-o> :xcmenucmd Go Back<cr>
+" " nnoremap <c-i> :xcmenucmd Go Forward<cr>
+" nnoremap <c-w>T :xcmenucmd Tab<cr>
+" nnoremap <c-w>v :xcmenucmd Editor On Right<cr>
+" " insert spaces
+" nnoremap <silent> [<space> O<esc>
+" nnoremap <silent> ]<space> o<esc>
+" inoremap <a-h> <left>
+" inoremap <a-l> <right>
+" inoremap <a-k> <up>
+" inoremap <a-j> <down>
+"
+" vnoremap <a-j> gj
+" vnoremap <a-k> gk
+" nnoremap <a-j> gj
+" nnoremap <a-k> gk
+" nnoremap [m ?func <cr>
+" nnoremap ]m /func <cr>
+" vnoremap \y "+y
+" nnoremap \y "+y
+" inoremap <c-m> <cr>
+" inoremap <s-enter> <esc>o
+"
+" " Xcode specific
+" nnoremap ,gf :xccmd openQuickly<cr>
+" nnoremap ,go :xcmenucmd Show Document Items<cr>
+" nnoremap ,gi :xcmenucmd Jump to Generated Interface<cr>
+" nnoremap gt :tabNext<cr>
+" nnoremap gT :xccmd selectPreviousTab<cr>
+" nnoremap ,gs :xccmd findSelectedTextInWorkspace<cr>
+" nnoremap ,gu :xcmenucmd Find Selected Symbol in Workspace<cr>
+" nnoremap ]q :xcmenucmd Find Next in Workspace<cr>
+" nnoremap [q :xcmenucmd Find Previous in Workspace<cr>
+" nnoremap <c-j> :nissue<cr>
+" nnoremap <c-k> :pissue<cr>
+" nnoremap ,cn :nissue<cr>
+" nnoremap ,cp :pissue<cr>
+" nnoremap ,cF :xcmenucmd Fix All Issues<cr>
+" nnoremap ,cd :xcmenucmd Show Issue<cr>
+" nnoremap <c-/> :xcmenucmd Toggle Comments<cr>
+" vnoremap <c-/> :xcmenucmd Toggle Comments<cr>
+" inoremap <c-/> <esc>:xcmenucmd Toggle Comments<cr>a
+"
+" nnoremap ,ft :xccmd toggleNavigatorsVisibility<cr>
+" nnoremap <c-w>tf :xccmd toggleNavigatorsVisibility<cr>
+" nnoremap ,wtf :xccmd toggleNavigatorsVisibility<cr>
+" nnoremap ,wsi :xcmenucmd Show Issue Navigator<cr>
+"
+" nnoremap <c-w>td :xccmd toggleDebuggerVisibility<cr>
+" nnoremap ,wtd :xccmd toggleDebuggerVisibility<cr>
+"
+" nnoremap <c-w>ti <c-s-z>
+" " nnoremap ,wti :xcmenucmd Hide Inspectors<cr>
+" nnoremap ,wti <c-s-z>
+"
+" nnoremap <c-w>ta :xccmd toggleDebuggerVisibility<cr>:xccmd toggleNavigatorsVisibility<cr>:xcmenucmd Hide Inspectors<cr>
+" nnoremap ,wta :xccmd toggleDebuggerVisibility<cr>:xccmd toggleNavigatorsVisibility<cr>:xcmenucmd Hide Inspectors<cr>
+"
+" nnoremap ,st :xccmd findSelectedTextInWorkspace<cr>
+" nnoremap ,sr :xcmenucmd Find Selected Symbol in Workspace<cr>
+"
+" nnoremap K :xccmd showQuickHelp<cr>
+"
+" nnoremap ,rn :xcmenucmd Rename...<cr>
+" nnoremap ,rl :xcmenucmd Edit All in Scope<cr>
+"
+" nnoremap ,mr :xcmenucmd Run<cr>
+" nnoremap ,mb :xcmenucmd Build<cr>
+" nnoremap ,mc :xcmenucmd Clean Build Folder<cr>
+"
+" nnoremap ,db :xccmd toggleBreakpointAtCurrentLine<CR>
+"
+" " TODO
+" " nnoremap <c-w>tc :xcmenucmd Activate Console<cr> " works but not toggle
+" " "nnoremap ,wtc :xcmenucmd Activate Console<cr>
+" nnoremap <c-z> :xccmd unfoldAll<CR>
+" nnoremap ,ma :xccmd foldAllMethods<CR>
+" nnoremap ,ua :xccmd unfoldAllMethods<CR>
+" nnoremap ,fa :xccmd foldAllMethods<CR>
+" nnoremap ,ua :xccmd unfoldAllMethods<CR>
+" nnoremap ,fc :xccmd foldAllComments<CR>
+" nnoremap ,uc :xccmd unfoldAllComments<CR>
+" nnoremap ,s viw:xccmd findSelectedTextInWorkspace<CR>
+" nnoremap ,hh :xccmd searchDocumentationForSelectedText<CR>
+" nnoremap ,cw  :xccmd performClose<CR>
+" nnoremap ,q  :xccmd closeDocument<CR>
+" nnoremap ,cm :xccmd addDocumentation<CR>
+" nnoremap ,pr :xccmd revealInProjectNavigator<CR>
+" nnoremap ,sr :xccmd revealInSymbolNavigator<CR>
+" nnoremap ,hh :xccmd searchDocumentationForSelectedText<CR>
+" nnoremap ,fn :xcmenucmd Filter in Navigator<CR>
+" nnoremap ,fl :xcmenucmd Filter in Library<CR>

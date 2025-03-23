@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<monodroid>
+  <java-sdk path="/Library/Java/JavaVirtualMachines/jdk-17.0.1.jdk/Contents/Home" />
+</monodroid>
