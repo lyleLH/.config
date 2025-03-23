@@ -112,7 +112,7 @@ source $ZSH/oh-my-zsh.sh
 
 
 
-source /Users/hao92/.config/zsh/alias.zsh 
+source $HOME/.config/zsh/alias.zsh 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
