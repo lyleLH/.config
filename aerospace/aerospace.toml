@@ -267,11 +267,6 @@ automatically-unhide-macos-hidden-apps = false
     if.app-id = 'com.electron.lark'    
     run = 'move-node-to-workspace L'
 
-
-[[on-window-detected]]
-if.app-id = 'com.apple.dt.Xcode'
-run = "move-node-to-workspace 5"
-
 [[on-window-detected]]
 if.app-id =  'com.github.GitHubClient'
 run = "move-node-to-workspace G"
@@ -304,20 +299,6 @@ run = "move-node-to-workspace A"
 
 
 [[on-window-detected]]
-if.app-id ='com.google.Chrome'
-run = "move-node-to-workspace 1"
-
-
-[[on-window-detected]]
-if.app-id ='net.kovidgoyal.kitty'
-run = "move-node-to-workspace 2"
-
-[[on-window-detected]]
-if.app-id ='com.todesktop.230313mzl4w4u92'
-run = "move-node-to-workspace 3"
-
-
-[[on-window-detected]]
 if.app-id ='abnerworks.Typora'
 run = "move-node-to-workspace R"
 
@@ -326,12 +307,7 @@ run = "move-node-to-workspace R"
 if.app-id ='com.tencent.xinWeChat'
 run = "move-node-to-workspace W" 
 
-
-[[on-window-detected]]
-if.app-id ='com.microsoft.VSCode'
-run = "move-node-to-workspace V" 
-
-
+ 
 [[on-window-detected]]
 if.app-id ='com.apple.Notes'
 run = "move-node-to-workspace R" 
