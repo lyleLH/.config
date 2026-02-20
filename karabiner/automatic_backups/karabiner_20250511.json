@@ -1,18 +1,36 @@
 {
-  "global" : {
-    "check_for_updates_on_startup" : true,
-    "show_in_menu_bar" : true,
-    "show_profile_name_in_menu_bar" : false
-  },
   "profiles" : [ {
     "complex_modifications" : {
       "parameters" : {
-        "basic.simultaneous_threshold_milliseconds" : 100,
+        "basic.simultaneous_threshold_milliseconds" : 150,
         "basic.to_delayed_action_delay_milliseconds" : 500,
         "basic.to_if_alone_timeout_milliseconds" : 1000,
         "basic.to_if_held_down_threshold_milliseconds" : 500
       },
       "rules" : [ {
+        "description" : "Auto generated layer conditions",
+        "manipulators" : [ {
+          "type" : "basic",
+          "to" : [ {
+            "set_variable" : {
+              "name" : "hyper-mode",
+              "value" : 1
+            }
+          } ],
+          "from" : {
+            "key_code" : "right_option"
+          },
+          "to_after_key_up" : [ {
+            "set_variable" : {
+              "name" : "hyper-mode",
+              "value" : 0
+            }
+          } ],
+          "to_if_alone" : [ {
+            "key_code" : "escape"
+          } ]
+        } ]
+      }, {
         "description" : "Shift Press Alone to change input source",
         "manipulators" : [ {
           "from" : {
@@ -36,6 +54,30 @@
           "type" : "basic"
         } ]
       }, {
+        "description" : "XXXXX",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "f16"
+          },
+          "to" : [ {
+            "key_code" : "right_shift",
+            "modifiers" : [ "left_command", "left_control", "left_option" ]
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "XXXXXxxx",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "f17"
+          },
+          "to" : [ {
+            "key_code" : "left_control",
+            "modifiers" : [ "left_command" ]
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
         "description" : "caps_lock to control",
         "manipulators" : [ {
           "from" : {
@@ -47,10 +89,10 @@
           "type" : "basic"
         } ]
       }, {
-        "description" : "Change right_option to 4 modifiers combination, f17 when used alone",
+        "description" : "Change right_option to 4 modifiers combination, f19 when used alone",
         "manipulators" : [ {
           "to_if_alone" : [ {
-            "key_code" : "f17"
+            "key_code" : "f18"
           } ],
           "from" : {
             "key_code" : "right_option"
@@ -67,7 +109,7 @@
           "from" : {
             "key_code" : "o",
             "modifiers" : {
-              "mandatory" : [ "left_command" ]
+              "mandatory" : [ "left_control" ]
             }
           },
           "to" : [ {
@@ -76,14 +118,14 @@
           } ],
           "conditions" : [ {
             "type" : "frontmost_application_if",
-            "bundle_identifiers" : [ "^com\\.google\\.Chrome$", "^com\\.brave\\.Browser$" ]
+            "bundle_identifiers" : [ "^com\\.google\\.Chrome$", "^com\\.brave\\.Browser$", "^org\\.mozilla\\.firefox$" ]
           } ],
           "type" : "basic"
         }, {
           "from" : {
             "key_code" : "comma",
             "modifiers" : {
-              "mandatory" : [ "left_command" ]
+              "mandatory" : [ "left_control" ]
             }
           },
           "to" : [ {
@@ -92,14 +134,14 @@
           } ],
           "conditions" : [ {
             "type" : "frontmost_application_if",
-            "bundle_identifiers" : [ "^com\\.google\\.Chrome$", "^com\\.brave\\.Browser$" ]
+            "bundle_identifiers" : [ "^com\\.google\\.Chrome$", "^com\\.brave\\.Browser$", "^org\\.mozilla\\.firefox$" ]
           } ],
           "type" : "basic"
         }, {
           "from" : {
             "key_code" : "period",
             "modifiers" : {
-              "mandatory" : [ "left_command" ]
+              "mandatory" : [ "left_control" ]
             }
           },
           "to" : [ {
@@ -108,84 +150,18 @@
           } ],
           "conditions" : [ {
             "type" : "frontmost_application_if",
-            "bundle_identifiers" : [ "^com\\.google\\.Chrome$", "^com\\.brave\\.Browser$" ]
-          } ],
-          "type" : "basic"
-        }, {
-          "from" : {
-            "key_code" : "j",
-            "modifiers" : {
-              "mandatory" : [ "left_command", "left_control" ]
-            }
-          },
-          "to" : [ {
-            "key_code" : "escape"
-          }, {
-            "key_code" : "b"
-          } ],
-          "conditions" : [ {
-            "type" : "frontmost_application_if",
-            "bundle_identifiers" : [ "^com\\.googlecode\\.iterm2$" ]
-          } ],
-          "type" : "basic"
-        }, {
-          "from" : {
-            "key_code" : "semicolon",
-            "modifiers" : {
-              "mandatory" : [ "left_command", "left_control" ]
-            }
-          },
-          "to" : [ {
-            "key_code" : "escape"
-          }, {
-            "key_code" : "f"
-          } ],
-          "conditions" : [ {
-            "type" : "frontmost_application_if",
-            "bundle_identifiers" : [ "^com\\.googlecode\\.iterm2$" ]
-          } ],
-          "type" : "basic"
-        }, {
-          "from" : {
-            "key_code" : "close_bracket",
-            "modifiers" : {
-              "mandatory" : [ "left_control", "left_shift" ]
-            }
-          },
-          "to" : [ {
-            "key_code" : "close_bracket",
-            "modifiers" : [ "left_command", "left_shift" ]
-          } ],
-          "conditions" : [ {
-            "type" : "frontmost_application_if",
-            "bundle_identifiers" : [ "^com\\.googlecode\\.iterm2$" ]
-          } ],
-          "type" : "basic"
-        }, {
-          "from" : {
-            "key_code" : "open_bracket",
-            "modifiers" : {
-              "mandatory" : [ "left_control", "left_shift" ]
-            }
-          },
-          "to" : [ {
-            "key_code" : "open_bracket",
-            "modifiers" : [ "left_command", "left_shift" ]
-          } ],
-          "conditions" : [ {
-            "type" : "frontmost_application_if",
-            "bundle_identifiers" : [ "^com\\.googlecode\\.iterm2$" ]
+            "bundle_identifiers" : [ "^com\\.google\\.Chrome$", "^com\\.brave\\.Browser$", "^org\\.mozilla\\.firefox$" ]
           } ],
           "type" : "basic"
         } ]
       }, {
-        "description" : "w - launch mode",
+        "description" : "w-mode trigger script with w + ,",
         "manipulators" : [ {
           "from" : {
-            "key_code" : "y"
+            "key_code" : "comma"
           },
           "to" : [ {
-            "shell_command" : "open \"/Applications/AppCode.app\""
+            "shell_command" : "osascript ~/my_scripts/apple_scripts/run_wmode.scpt"
           } ],
           "conditions" : [ {
             "name" : "w-mode",
@@ -204,7 +180,55 @@
               "value" : 1
             }
           }, {
-            "shell_command" : "open \"/Applications/AppCode.app\""
+            "shell_command" : "osascript ~/my_scripts/apple_scripts/run_wmode.scpt"
+          } ],
+          "from" : {
+            "simultaneous" : [ {
+              "key_code" : "w"
+            }, {
+              "key_code" : "comma"
+            } ],
+            "simultaneous_options" : {
+              "detect_key_down_uninterruptedly" : true,
+              "key_down_order" : "strict",
+              "key_up_order" : "strict_inverse",
+              "key_up_when" : "any",
+              "to_after_key_up" : [ {
+                "set_variable" : {
+                  "name" : "w-mode",
+                  "value" : 0
+                }
+              } ]
+            }
+          }
+        } ]
+      }, {
+        "description" : "w - launch mode",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "y"
+          },
+          "to" : [ {
+            "shell_command" : "open \"/Applications/Sublime Text.app\""
+          } ],
+          "conditions" : [ {
+            "name" : "w-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "type" : "basic",
+          "parameters" : {
+            "basic.simultaneous_threshold_milliseconds" : 250
+          },
+          "to" : [ {
+            "set_variable" : {
+              "name" : "w-mode",
+              "value" : 1
+            }
+          }, {
+            "shell_command" : "open \"/Applications/Sublime Text.app\""
           } ],
           "from" : {
             "simultaneous" : [ {
@@ -320,7 +344,7 @@
             "key_code" : "o"
           },
           "to" : [ {
-            "shell_command" : "open \"/Applications/Sourcetree.app\""
+            "shell_command" : "open \"/Applications/Cursor.app\""
           } ],
           "conditions" : [ {
             "name" : "w-mode",
@@ -339,7 +363,7 @@
               "value" : 1
             }
           }, {
-            "shell_command" : "open \"/Applications/Sourcetree.app\""
+            "shell_command" : "open \"/Applications/Cursor.app\""
           } ],
           "from" : {
             "simultaneous" : [ {
@@ -362,10 +386,10 @@
           }
         }, {
           "from" : {
-            "key_code" : "h"
+            "key_code" : "k"
           },
           "to" : [ {
-            "shell_command" : "open \"/Applications/Wechat.app\""
+            "shell_command" : "open \"/Applications/MWeb.app\""
           } ],
           "conditions" : [ {
             "name" : "w-mode",
@@ -384,13 +408,103 @@
               "value" : 1
             }
           }, {
-            "shell_command" : "open \"/Applications/Wechat.app\""
+            "shell_command" : "open \"/Applications/MWeb.app\""
           } ],
           "from" : {
             "simultaneous" : [ {
               "key_code" : "w"
             }, {
-              "key_code" : "h"
+              "key_code" : "k"
+            } ],
+            "simultaneous_options" : {
+              "detect_key_down_uninterruptedly" : true,
+              "key_down_order" : "strict",
+              "key_up_order" : "strict_inverse",
+              "key_up_when" : "any",
+              "to_after_key_up" : [ {
+                "set_variable" : {
+                  "name" : "w-mode",
+                  "value" : 0
+                }
+              } ]
+            }
+          }
+        }, {
+          "from" : {
+            "key_code" : "l"
+          },
+          "to" : [ {
+            "shell_command" : "open \"/Applications/Lark.app\""
+          } ],
+          "conditions" : [ {
+            "name" : "w-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "type" : "basic",
+          "parameters" : {
+            "basic.simultaneous_threshold_milliseconds" : 250
+          },
+          "to" : [ {
+            "set_variable" : {
+              "name" : "w-mode",
+              "value" : 1
+            }
+          }, {
+            "shell_command" : "open \"/Applications/Lark.app\""
+          } ],
+          "from" : {
+            "simultaneous" : [ {
+              "key_code" : "w"
+            }, {
+              "key_code" : "l"
+            } ],
+            "simultaneous_options" : {
+              "detect_key_down_uninterruptedly" : true,
+              "key_down_order" : "strict",
+              "key_up_order" : "strict_inverse",
+              "key_up_when" : "any",
+              "to_after_key_up" : [ {
+                "set_variable" : {
+                  "name" : "w-mode",
+                  "value" : 0
+                }
+              } ]
+            }
+          }
+        }, {
+          "from" : {
+            "key_code" : "m"
+          },
+          "to" : [ {
+            "shell_command" : "open \"/Applications/GitHub Desktop.app\""
+          } ],
+          "conditions" : [ {
+            "name" : "w-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "type" : "basic",
+          "parameters" : {
+            "basic.simultaneous_threshold_milliseconds" : 250
+          },
+          "to" : [ {
+            "set_variable" : {
+              "name" : "w-mode",
+              "value" : 1
+            }
+          }, {
+            "shell_command" : "open \"/Applications/GitHub Desktop.app\""
+          } ],
+          "from" : {
+            "simultaneous" : [ {
+              "key_code" : "w"
+            }, {
+              "key_code" : "m"
             } ],
             "simultaneous_options" : {
               "detect_key_down_uninterruptedly" : true,
@@ -413,7 +527,7 @@
             "key_code" : "q"
           },
           "to" : [ {
-            "shell_command" : "open \"/Applications/WeChat.app\""
+            "shell_command" : "open \"/System/Applications/Notes.app\""
           } ],
           "conditions" : [ {
             "name" : "o-mode",
@@ -432,7 +546,7 @@
               "value" : 1
             }
           }, {
-            "shell_command" : "open \"/Applications/WeChat.app\""
+            "shell_command" : "open \"/System/Applications/Notes.app\""
           } ],
           "from" : {
             "simultaneous" : [ {
@@ -458,7 +572,7 @@
             "key_code" : "w"
           },
           "to" : [ {
-            "shell_command" : "open \"/Applications/企业微信.app\""
+            "shell_command" : "open \"/Applications/WeChat.app\""
           } ],
           "conditions" : [ {
             "name" : "o-mode",
@@ -477,7 +591,7 @@
               "value" : 1
             }
           }, {
-            "shell_command" : "open \"/Applications/企业微信.app\""
+            "shell_command" : "open \"/Applications/WeChat.app\""
           } ],
           "from" : {
             "simultaneous" : [ {
@@ -503,7 +617,7 @@
             "key_code" : "e"
           },
           "to" : [ {
-            "shell_command" : "open \"/Applications/Google Chrome.app\""
+            "shell_command" : "open \"/Applications/Slack.app\""
           } ],
           "conditions" : [ {
             "name" : "o-mode",
@@ -522,7 +636,7 @@
               "value" : 1
             }
           }, {
-            "shell_command" : "open \"/Applications/Google Chrome.app\""
+            "shell_command" : "open \"/Applications/Slack.app\""
           } ],
           "from" : {
             "simultaneous" : [ {
@@ -548,7 +662,7 @@
             "key_code" : "r"
           },
           "to" : [ {
-            "shell_command" : "open \"/Applications/Notion.app\""
+            "shell_command" : "open \"/Applications/GitHub Desktop.app\""
           } ],
           "conditions" : [ {
             "name" : "o-mode",
@@ -567,7 +681,7 @@
               "value" : 1
             }
           }, {
-            "shell_command" : "open \"/Applications/Notion.app\""
+            "shell_command" : "open \"/Applications/GitHub Desktop.app\""
           } ],
           "from" : {
             "simultaneous" : [ {
@@ -593,7 +707,7 @@
             "key_code" : "t"
           },
           "to" : [ {
-            "shell_command" : "open \"/Applications/Tor Browser.app\""
+            "shell_command" : "open \"/Applications/kitty.app/\""
           } ],
           "conditions" : [ {
             "name" : "o-mode",
@@ -612,7 +726,7 @@
               "value" : 1
             }
           }, {
-            "shell_command" : "open \"/Applications/Tor Browser.app\""
+            "shell_command" : "open \"/Applications/kitty.app/\""
           } ],
           "from" : {
             "simultaneous" : [ {
@@ -635,10 +749,10 @@
           }
         }, {
           "from" : {
-            "key_code" : "s"
+            "key_code" : "a"
           },
           "to" : [ {
-            "shell_command" : "open \"/Applications/Spotify.app\""
+            "shell_command" : "open \"/Applications/LM Studio.app/\""
           } ],
           "conditions" : [ {
             "name" : "o-mode",
@@ -657,7 +771,52 @@
               "value" : 1
             }
           }, {
-            "shell_command" : "open \"/Applications/Spotify.app\""
+            "shell_command" : "open \"/Applications/LM Studio.app/\""
+          } ],
+          "from" : {
+            "simultaneous" : [ {
+              "key_code" : "o"
+            }, {
+              "key_code" : "a"
+            } ],
+            "simultaneous_options" : {
+              "detect_key_down_uninterruptedly" : true,
+              "key_down_order" : "strict",
+              "key_up_order" : "strict_inverse",
+              "key_up_when" : "any",
+              "to_after_key_up" : [ {
+                "set_variable" : {
+                  "name" : "o-mode",
+                  "value" : 0
+                }
+              } ]
+            }
+          }
+        }, {
+          "from" : {
+            "key_code" : "s"
+          },
+          "to" : [ {
+            "shell_command" : "open \"/Applications/Cursor.app/\""
+          } ],
+          "conditions" : [ {
+            "name" : "o-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "type" : "basic",
+          "parameters" : {
+            "basic.simultaneous_threshold_milliseconds" : 250
+          },
+          "to" : [ {
+            "set_variable" : {
+              "name" : "o-mode",
+              "value" : 1
+            }
+          }, {
+            "shell_command" : "open \"/Applications/Cursor.app/\""
           } ],
           "from" : {
             "simultaneous" : [ {
@@ -723,105 +882,191 @@
               } ]
             }
           }
+        }, {
+          "from" : {
+            "key_code" : "g"
+          },
+          "to" : [ {
+            "shell_command" : "open \"/System/Library/CoreServices/Finder.app\""
+          } ],
+          "conditions" : [ {
+            "name" : "o-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "type" : "basic",
+          "parameters" : {
+            "basic.simultaneous_threshold_milliseconds" : 250
+          },
+          "to" : [ {
+            "set_variable" : {
+              "name" : "o-mode",
+              "value" : 1
+            }
+          }, {
+            "shell_command" : "open \"/System/Library/CoreServices/Finder.app\""
+          } ],
+          "from" : {
+            "simultaneous" : [ {
+              "key_code" : "o"
+            }, {
+              "key_code" : "g"
+            } ],
+            "simultaneous_options" : {
+              "detect_key_down_uninterruptedly" : true,
+              "key_down_order" : "strict",
+              "key_up_order" : "strict_inverse",
+              "key_up_when" : "any",
+              "to_after_key_up" : [ {
+                "set_variable" : {
+                  "name" : "o-mode",
+                  "value" : 0
+                }
+              } ]
+            }
+          }
+        }, {
+          "from" : {
+            "key_code" : "c"
+          },
+          "to" : [ {
+            "shell_command" : "open \"/Applications/Google Chrome.app\""
+          } ],
+          "conditions" : [ {
+            "name" : "o-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "type" : "basic",
+          "parameters" : {
+            "basic.simultaneous_threshold_milliseconds" : 250
+          },
+          "to" : [ {
+            "set_variable" : {
+              "name" : "o-mode",
+              "value" : 1
+            }
+          }, {
+            "shell_command" : "open \"/Applications/Google Chrome.app\""
+          } ],
+          "from" : {
+            "simultaneous" : [ {
+              "key_code" : "o"
+            }, {
+              "key_code" : "c"
+            } ],
+            "simultaneous_options" : {
+              "detect_key_down_uninterruptedly" : true,
+              "key_down_order" : "strict",
+              "key_up_order" : "strict_inverse",
+              "key_up_when" : "any",
+              "to_after_key_up" : [ {
+                "set_variable" : {
+                  "name" : "o-mode",
+                  "value" : 0
+                }
+              } ]
+            }
+          }
+        } ]
+      }, {
+        "description" : "hyper-launch mode",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "left_control"
+          },
+          "to" : [ {
+            "shell_command" : "osascript -e 'tell application \"Visual Studio Code\" to activate'"
+          } ],
+          "conditions" : [ {
+            "name" : "hyper-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "c"
+          },
+          "to" : [ {
+            "shell_command" : "open \"/Applications/Google Chrome.app\""
+          } ],
+          "conditions" : [ {
+            "name" : "hyper-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
         } ]
       } ]
     },
-    "devices" : [ ],
-    "fn_function_keys" : [ {
-      "from" : {
-        "key_code" : "f1"
+    "devices" : [ {
+      "disable_built_in_keyboard_if_exists" : true,
+      "identifiers" : {
+        "is_keyboard" : true,
+        "is_pointing_device" : true,
+        "product_id" : 24672,
+        "vendor_id" : 65261
       },
-      "to" : [ {
-        "consumer_key_code" : "display_brightness_decrement"
-      } ]
+      "ignore" : false,
+      "manipulate_caps_lock_led" : false
     }, {
-      "from" : {
-        "key_code" : "f2"
+      "identifiers" : {
+        "is_pointing_device" : true,
+        "product_id" : 269,
+        "vendor_id" : 1390
       },
-      "to" : [ {
-        "consumer_key_code" : "display_brightness_increment"
-      } ]
+      "ignore" : false
     }, {
-      "from" : {
-        "key_code" : "f3"
+      "identifiers" : {
+        "is_keyboard" : true,
+        "is_pointing_device" : true,
+        "product_id" : 304,
+        "vendor_id" : 13364
       },
-      "to" : [ {
-        "apple_vendor_keyboard_key_code" : "mission_control"
-      } ]
+      "ignore" : false
     }, {
-      "from" : {
-        "key_code" : "f4"
-      },
-      "to" : [ {
-        "apple_vendor_keyboard_key_code" : "spotlight"
-      } ]
+      "disable_built_in_keyboard_if_exists" : true,
+      "identifiers" : {
+        "is_keyboard" : true,
+        "product_id" : 24672,
+        "vendor_id" : 65261
+      }
     }, {
-      "from" : {
-        "key_code" : "f5"
+      "disable_built_in_keyboard_if_exists" : true,
+      "identifiers" : {
+        "is_keyboard" : true,
+        "product_id" : 64009,
+        "vendor_id" : 13652
       },
-      "to" : [ {
-        "consumer_key_code" : "dictation"
-      } ]
+      "manipulate_caps_lock_led" : false
     }, {
-      "from" : {
-        "key_code" : "f6"
+      "identifiers" : {
+        "is_keyboard" : true,
+        "is_pointing_device" : true,
+        "product_id" : 24926,
+        "vendor_id" : 7504
       },
-      "to" : [ {
-        "key_code" : "f6"
-      } ]
+      "ignore" : false,
+      "treat_as_built_in_keyboard" : true
     }, {
-      "from" : {
-        "key_code" : "f7"
+      "identifiers" : {
+        "is_keyboard" : true,
+        "is_pointing_device" : true,
+        "product_id" : 866,
+        "vendor_id" : 10730
       },
-      "to" : [ {
-        "consumer_key_code" : "rewind"
-      } ]
-    }, {
-      "from" : {
-        "key_code" : "f8"
-      },
-      "to" : [ {
-        "consumer_key_code" : "play_or_pause"
-      } ]
-    }, {
-      "from" : {
-        "key_code" : "f9"
-      },
-      "to" : [ {
-        "consumer_key_code" : "fast_forward"
-      } ]
-    }, {
-      "from" : {
-        "key_code" : "f10"
-      },
-      "to" : [ {
-        "consumer_key_code" : "mute"
-      } ]
-    }, {
-      "from" : {
-        "key_code" : "f11"
-      },
-      "to" : [ {
-        "consumer_key_code" : "volume_decrement"
-      } ]
-    }, {
-      "from" : {
-        "key_code" : "f12"
-      },
-      "to" : [ {
-        "consumer_key_code" : "volume_increment"
-      } ]
+      "ignore" : false
     } ],
     "name" : "Default",
-    "parameters" : {
-      "delay_milliseconds_before_open_device" : 1000
-    },
     "selected" : true,
-    "simple_modifications" : [ ],
     "virtual_hid_keyboard" : {
       "country_code" : 0,
-      "indicate_sticky_modifier_keys_state" : true,
-      "mouse_key_xy_scale" : 100
+      "keyboard_type_v2" : "ansi"
     }
   } ]
 }
