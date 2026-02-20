@@ -1093,14 +1093,6 @@
                         "vendor_id": 10730
                     },
                     "ignore": false
-                },
-                {
-                    "disable_built_in_keyboard_if_exists": true,
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "product_id": 24672,
-                        "vendor_id": 65261
-                    }
                 }
             ],
             "name": "Default",

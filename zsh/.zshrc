@@ -117,9 +117,13 @@ source $HOME/.config/zsh/alias.zsh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export PATH=/opt/homebrew/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin:/usr/local/go/bin:/Users/hao92/.cargo/bin:/Applications/iTerm.app/Contents/Resources/utilities
-eval "$(/opt/homebrew/bin/brew shellenv)"
+export HOMEBREW_PREFIX="/opt/homebrew"
+export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+export HOMEBREW_REPOSITORY="/opt/homebrew"
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:"
+export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
 export PATH=$PATH:$HOME/.asdf/installs/python/3.9.0/bin
-export PATH=$PATH:$HOME/.asdf/shims
 
 export PATH=$HOME/development/flutter/bin:$PATH
 export GOKU_EDN_CONFIG_FILE="$HOME/.config/goku_config/karabiner.edn"
@@ -128,26 +132,28 @@ export GOKU_EDN_CONFIG_FILE="$HOME/.config/goku_config/karabiner.edn"
 export PATH="$PATH:/Users/hao92/.lmstudio/bin"
 
 export RUBY_YJIT_ENABLE=1
-export RUBY_CONFIGURE_OPTS="--with-zlib-dir=$(brew --prefix zlib) --with-openssl-dir=$(brew --prefix openssl@1.1) --with-readline-dir=$(brew --prefix readline) --with-libyaml-dir=$(brew --prefix libyaml) --with-gdbm-dir=$(brew --prefix gdbm)"
+export RUBY_CONFIGURE_OPTS="--with-zlib-dir=/opt/homebrew/opt/zlib --with-openssl-dir=/opt/homebrew/opt/openssl@1.1 --with-readline-dir=/opt/homebrew/opt/readline --with-libyaml-dir=/opt/homebrew/opt/libyaml --with-gdbm-dir=/opt/homebrew/opt/gdbm"
 export CFLAGS="-Wno-error=implicit-function-declaration"
-export LDFLAGS="-L$(brew --prefix libyaml)/lib"
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/libyaml/lib"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"  # asdf shims (primary)
 
 export PATH=$PATH:$HOME/go/bin
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
+# >>> conda initialize (lazy-loaded) >>>
+conda() {
+  unfunction conda
+  local __conda_setup
+  __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
     eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+  elif [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+    . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+  else
+    export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+  fi
+  unset __conda_setup
+  conda "$@"
+}
 # <<< conda initialize <<<
 
 alias v='nvim' # default Neovim config
@@ -304,3 +310,9 @@ wmode() {
     echo "Error: Could not parse path for key $key"
   fi
 }
+
+. "$HOME/.local/bin/env"
+
+# Added by Antigravity
+export PATH="/Users/hao92/.antigravity/antigravity/bin:$PATH"
+export PATH="$HOME/.local/bin/:$PATH"
