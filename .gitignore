@@ -8,6 +8,9 @@ gh/hosts.yml
 # ── Machine-specific ──
 Futu-Mac/
 
+# ── tmux plugins (installed by tpm) ──
+tmux/plugins/
+
 # ── Backups (auto-generated) ──
 **/backups/
 
