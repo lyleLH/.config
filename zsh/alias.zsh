@@ -158,56 +158,103 @@ _tx_session() {
 _tx_help() {
   local cheatsheet
   cheatsheet=$(cat <<'CHEAT'
+═══════════════════════════════════════════════════════
+ prefix = Ctrl+a  (先按 Ctrl+a 松开，再按后续键)
+═══════════════════════════════════════════════════════
+
 [SESSION 会话]
 prefix + d          | Detach 脱离会话
 prefix + $          | Rename session 重命名会话
 prefix + s          | List sessions 列出会话
-prefix + (          | Previous session 上一会话
-prefix + )          | Next session 下一会话
-prefix + f          | fzf session switcher (custom) fzf会话切换
+prefix + o          | SessionX 会话管理器 (fzf搜索/预览/创建/删除)
+prefix + g          | Sessionist: 输入名字跳转 session
+prefix + C          | Sessionist: 新建 session
+prefix + X          | Sessionist: kill 当前 session 并自动切换
+prefix + @          | Sessionist: 把当前 pane 拆到新 session
+  例: 当你想快速切换项目时 → prefix+o → fzf搜索 session → 回车切换
 
 [WINDOW 窗口]
-prefix + c          | New window 新建窗口
+prefix + c          | New window 新建窗口 (自动显示 Nerd Font 图标)
 prefix + ,          | Rename window 重命名窗口
 prefix + w          | List windows 列出窗口
 prefix + n          | Next window 下一窗口
-prefix + p          | Previous window 上一窗口
+prefix + p          | Previous window 上一窗口 (注意和 floax 的 p 不冲突，p 弹浮窗)
 prefix + 1-9        | Go to window N 跳转窗口N
 prefix + &          | Kill window 关闭窗口
 
 [PANE 面板]
-prefix + |          | Split horizontal (custom) 水平分割
-prefix + -          | Split vertical (custom) 垂直分割
+prefix + |          | Split horizontal 水平分割(左右)
+prefix + -          | Split vertical 垂直分割(上下)
 prefix + x          | Kill pane 关闭面板
-prefix + z / m      | Toggle zoom 切换全屏
+prefix + m          | Toggle zoom 切换全屏
 prefix + q          | Show pane numbers 显示面板编号
 prefix + {          | Move pane left 面板左移
 prefix + }          | Move pane right 面板右移
+  例: 当你想边写代码边看日志 → prefix+| → 左边 nvim 右边 tail -f
 
-[RESIZE 调整大小]
-prefix + h          | Resize left 向左扩展
-prefix + l          | Resize right 向右扩展
-prefix + j          | Resize down 向下扩展
-prefix + k          | Resize up 向上扩展
+[RESIZE 调整面板大小]
+prefix + h/j/k/l   | 向左/下/上/右扩展 (可重复按)
+  例: 当面板太小时 → prefix+l 连按3次 → 向右扩展15格
 
 [NAVIGATE 导航]
-Ctrl + h/j/k/l      | Navigate panes (vim-tmux-navigator) 跨面板导航
+Ctrl + h/j/k/l      | 跨面板导航 (vim-tmux-navigator, nvim里也能用)
+  例: 当你在 nvim 里想跳到右边终端 → Ctrl+l → 直接跳过去
 
 [COPY MODE 复制模式]
 prefix + [          | Enter copy mode 进入复制模式
 v                   | Begin selection 开始选择
-y                   | Copy selection 复制选中
+y                   | Copy to clipboard (tmux-yank) 复制到系统剪贴板
+o                   | Open file/URL (tmux-open) 打开选中的文件或链接
+Ctrl+o              | Open with $EDITOR (tmux-open) 用 nvim 打开
 q                   | Exit copy mode 退出复制模式
+  例: 当你看到报错路径想打开 → prefix+[ → v选中路径 → o 直接打开
+
+[SCREEN TEXT 屏幕文本提取]
+prefix + Space      | Thumbs: 高亮屏幕上所有 URL/路径/hash → 按标签字母复制
+prefix + Tab        | Extrakto: fzf 模糊搜索屏幕上所有文本 → 选中复制
+prefix + j          | Jump: 输入字符 → 屏幕出现跳转标签 → 按标签跳过去
+  例: 当你看到一个 git hash 想复制 → prefix+Space → 按对应字母 → 自动复制
+  例: 当你想找屏幕上某个路径 → prefix+Tab → fzf搜索 → 回车复制
+  例: 当你想跳到屏幕上某个位置 → prefix+j → 输入目标字符 → 按标签跳转
+
+[POPUP 弹窗]
+prefix + p          | Floax: 弹出/收起浮动终端 (不离开当前面板)
+prefix + g          | 弹出临时终端 (关闭后消失)
+prefix + G          | 弹出 lazygit
+prefix + e          | 弹出 yazi 文件管理器
+prefix + T          | 弹出本速查表
+  例: 当你在写代码想快速 git commit → prefix+G → lazygit 操作 → q退出回来
+  例: 当你想浏览文件 → prefix+e → yazi 里浏览 → q退出回来
+
+[FZF 模糊搜索]
+prefix + F          | tmux-fzf: 万能菜单 (session/window/pane/command/keybinding)
+  例: 当你忘了某个快捷键 → prefix+F → 选 keybinding → fzf搜索
+
+[SAVE & RESTORE 保存恢复]
+prefix + Ctrl+s     | Resurrect: 手动保存所有 session
+prefix + Ctrl+r     | Resurrect: 手动恢复 session
+(自动)              | Continuum: 每15分钟自动保存，重启后自动恢复
+  例: 当你要重启电脑 → 不用管，重新打开 tmux 自动恢复所有窗口
+
+[LOGGING 日志]
+prefix + P          | 开始/停止记录当前 pane 输出到文件
+prefix + Alt+p      | 截取当前屏幕到文件
+prefix + Alt+P      | 保存完整历史到文件
+  例: 当你在 debug 想保存终端输出 → prefix+P 开始录 → 复现 bug → prefix+P 停止
+
+[PROCESS 进程]
+prefix + *          | Cowboy: 强制 kill 当前 pane 卡住的进程
+  例: 当 npm install 卡死了 → prefix+* → 进程被 kill，pane 还在
+
+[SSH NESTED 嵌套 tmux]
+F12                 | 切换内外层 tmux (本地 ↔ 远程)
+  例: 当你 SSH 到服务器且服务器也有 tmux → F12 切到内层 → 操作远程 tmux
 
 [MISC 其他]
-prefix + r          | Reload config (custom) 重新加载配置
+prefix + r          | Reload config 重新加载配置
 prefix + I          | Install plugins (tpm) 安装插件
-prefix + T          | fzf cheatsheet popup (custom) fzf速查弹窗
-
-[PLUGIN 插件]
-tmux-resurrect      | prefix+Ctrl-s=save prefix+Ctrl-r=restore 保存/恢复会话
-tmux-continuum      | Auto-save every 15min 每15分钟自动保存
-vim-tmux-navigator  | Seamless vim/tmux navigation 无缝vim/tmux导航
+prefix + U          | Update plugins 更新插件
+prefix + ?          | 显示所有快捷键 (原始格式)
 CHEAT
 )
 

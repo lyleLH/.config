@@ -243,6 +243,6 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # Show system info on new shell (skip in vscode/scripts)
-if [[ $- == *i* && -z "$VSCODE_INJECTION" ]]; then
+if [[ $- == *i* && -z "$VSCODE_INJECTION" && -z "$SKIP_NEOFETCH" ]]; then
   neofetch
 fi
