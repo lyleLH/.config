@@ -64,12 +64,17 @@ return {
 		-- Capabilities for autocompletion
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
-		-- Diagnostic signs
-		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-		for type, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-		end
+		-- Diagnostic signs (Neovim 0.11+)
+		vim.diagnostic.config({
+			signs = {
+				text = {
+					[vim.diagnostic.severity.ERROR] = " ",
+					[vim.diagnostic.severity.WARN] = " ",
+					[vim.diagnostic.severity.HINT] = "󰠠 ",
+					[vim.diagnostic.severity.INFO] = " ",
+				},
+			},
+		})
 
 		-- Configure each server using vim.lsp.config (Neovim 0.11+)
 		-- mason-lspconfig v2 auto-enables installed servers via vim.lsp.enable()
@@ -106,6 +111,19 @@ return {
 			filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
 		})
 
+		vim.lsp.config("ts_ls", {
+			filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+		})
+
+		vim.lsp.config("eslint", {
+			on_attach = function(client, bufnr)
+				vim.api.nvim_create_autocmd("BufWritePre", {
+					buffer = bufnr,
+					command = "EslintFixAll",
+				})
+			end,
+		})
+
 		vim.lsp.config("emmet_ls", {
 			filetypes = {
 				"html",
@@ -115,7 +133,6 @@ return {
 				"sass",
 				"scss",
 				"less",
-				"svelte",
 			},
 		})
 

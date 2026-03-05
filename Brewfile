@@ -18,6 +18,7 @@ brew "yazi"
 brew "tree-sitter"
 
 # --- Shell & Config ---
+brew "starship"
 brew "yqrashawn/goku/goku"
 brew "asdf"
 

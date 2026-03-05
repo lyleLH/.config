@@ -22,14 +22,18 @@ return {
 		mason_lspconfig.setup({
 			automatic_enable = true,
 			ensure_installed = {
+				-- React / Frontend
+				"ts_ls",
 				"html",
 				"cssls",
 				"tailwindcss",
-				"svelte",
-				"lua_ls",
-				"graphql",
+				"eslint",
 				"emmet_ls",
+				"jsonls",
+				-- Other
+				"graphql",
 				"prismals",
+				"lua_ls",
 				"pyright",
 			},
 		})
@@ -37,11 +41,11 @@ return {
 		mason_tool_installer.setup({
 			ensure_installed = {
 				"prettier",
+				"eslint_d",
 				"stylua",
 				"isort",
 				"black",
 				"pylint",
-				"eslint_d",
 			},
 		})
 	end,

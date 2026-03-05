@@ -1,8 +1,8 @@
 return {
 	{
 		"folke/tokyonight.nvim",
-		lazy = false,
-		priority = 1001,
+		lazy = true,
+		priority = 1000,
 		config = function()
 			local transparent = false -- set to true if you would like to enable transparency
 
@@ -60,7 +60,8 @@ return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-		priority = 1000,
+		lazy = false,
+		priority = 1001,
 		config = function()
 			require("catppuccin").setup({
 				flavour = "mocha", -- latte, frappe, macchiato, mocha
@@ -131,201 +132,8 @@ return {
 					},
 				},
 			})
+			vim.cmd("colorscheme catppuccin")
 		end,
 	},
 
-	{
-		"rebelot/kanagawa.nvim",
-		priority = 1000,
-		config = function()
-			require("kanagawa").setup({
-				compile = false,
-				undercurl = true,
-				commentStyle = { italic = true },
-				functionStyle = {},
-				keywordStyle = { italic = true },
-				statementStyle = { bold = true },
-				typeStyle = {},
-				transparent = false,
-				dimInactive = false,
-				terminalColors = true,
-				colors = {
-					palette = {},
-					theme = {
-						wave = {},
-						lotus = {},
-						dragon = {},
-						all = {
-							ui = {
-								bg_gutter = "none",
-							},
-						},
-					},
-				},
-				overrides = function(colors)
-					local theme = colors.theme
-					return {
-						NormalFloat = { bg = "none" },
-						FloatBorder = { bg = "none" },
-						FloatTitle = { bg = "none" },
-						TelescopeTitle = { fg = theme.ui.special, bold = true },
-						TelescopePromptNormal = { bg = theme.ui.bg_p1 },
-						TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
-						TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
-						TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
-						TelescopePreviewNormal = { bg = theme.ui.bg_dim },
-						TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
-					}
-				end,
-				theme = "wave",
-				background = {
-					dark = "wave",
-					light = "lotus",
-				},
-				integrations = {
-					nvimtree = {
-						enabled = true,
-						show_root = true,
-						transparent_panel = false,
-					},
-				},
-			})
-		end,
-	},
-
-	{
-		"loctvl842/monokai-pro.nvim",
-		priority = 1000,
-		config = function()
-			require("monokai-pro").setup({
-				transparent_background = false,
-				terminal_colors = true,
-				devicons = true,
-				filter = "pro", -- classic | octagon | pro | machine | ristretto | spectrum
-				day_night = {
-					enable = true,
-					day_filter = "pro",
-					night_filter = "spectrum",
-				},
-				inc_search = "background", -- underline | background
-				background_clear = {
-					"nvim-tree",
-					"bufferline",
-					"telescope",
-					"toggleterm",
-				},
-				plugins = {
-					bufferline = {
-						underline_selected = true,
-						underline_visible = false,
-						underline_fill = true,
-						bold = false,
-					},
-					indent_blankline = {
-						context_highlight = "pro",
-						context_start_underline = true,
-					},
-					telescope = {
-						enabled = true,
-						style = "default", -- default | flat
-					},
-					nvimtree = {
-						enabled = true,
-						show_root = true,
-						transparent_panel = false,
-					},
-				},
-			})
-		end,
-	},
-
-	{
-		"EdenEast/nightfox.nvim",
-		priority = 1000,
-		config = function()
-			require("nightfox").setup({
-				options = {
-					compile_path = vim.fn.stdpath("cache") .. "/nightfox",
-					compile_file_suffix = "_compiled",
-					styles = {
-						comments = "italic",
-						keywords = "bold",
-						types = "italic,bold",
-					},
-					transparent = false,
-					terminal_colors = true,
-					modules = {
-						diagnostic = {
-							enable = true,
-							background = true,
-						},
-						native_lsp = {
-							enable = true,
-							background = true,
-						},
-						treesitter = true,
-						telescope = true,
-						cmp = true,
-						gitsigns = true,
-						whichkey = true,
-						indent_blankline = true,
-						dashboard = true,
-						nvimtree = {
-							enabled = true,
-							show_root = true,
-							transparent_panel = false,
-						},
-					},
-				},
-				palettes = {},
-				specs = {},
-				groups = {},
-			})
-
-			vim.cmd("colorscheme nightfox")
-		end,
-	},
-
-	{
-		"AlexvZyl/nordic.nvim",
-		priority = 1000,
-		config = function()
-			require('nordic').setup({
-				italic_comments = true,
-				bold_keywords = true,
-				transparent = {
-					bg = false,
-					float = false,
-				},
-				bright_border = false,
-				reduced_blue = true,
-				cursorline = {
-					bold = false,
-					bold_number = true,
-					theme = 'dark',
-					blend = 0.85,
-				},
-				telescope = {
-					style = 'flat',
-				},
-				noice = {
-					style = 'flat',
-				},
-				ts_context = {
-					dark_background = true,
-				},
-				integrations = {
-					nvimtree = {
-						enabled = true,
-						show_root = true,
-						transparent_panel = false,
-					},
-				},
-				on_palette = function(palette) 
-				end,
-				on_highlight = function(highlights, palette)
-				end,
-			})
-		end,
-	},
 }

@@ -1,9 +1,11 @@
 
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# --- PATH (must be before everything) ---
+export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin:/usr/local/go/bin:/Users/hao92/.cargo/bin:/Applications/iTerm.app/Contents/Resources/utilities
+export HOMEBREW_PREFIX="/opt/homebrew"
+export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+export HOMEBREW_REPOSITORY="/opt/homebrew"
+export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:"
+export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
 
 # --- Zinit Plugin Manager ---
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -19,6 +21,7 @@ zinit snippet OMZL::history.zsh
 zinit snippet OMZL::key-bindings.zsh
 zinit snippet OMZL::git.zsh
 zinit snippet OMZL::theme-and-appearance.zsh
+zinit snippet OMZL::directories.zsh
 
 # Oh-My-Zsh plugins
 zinit snippet OMZP::git
@@ -33,23 +36,12 @@ zinit light agkozak/zsh-z
 autoload -Uz compinit && compinit
 zinit cdreplay -q
 
-# p10k theme
-zinit ice depth=1
-zinit light romkatv/powerlevel10k
-
+# Starship prompt
+eval "$(starship init zsh)"
 
 
 source $HOME/.config/zsh/alias.zsh 
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-export PATH=/opt/homebrew/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin:/usr/local/go/bin:/Users/hao92/.cargo/bin:/Applications/iTerm.app/Contents/Resources/utilities
-export HOMEBREW_PREFIX="/opt/homebrew"
-export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
-export HOMEBREW_REPOSITORY="/opt/homebrew"
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
-export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:"
-export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
 export PATH=$PATH:$HOME/.asdf/installs/python/3.9.0/bin
 
 export PATH=$HOME/development/flutter/bin:$PATH
@@ -249,3 +241,8 @@ export PATH=$PATH:$HOME/.maestro/bin
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# Show system info on new shell (skip in vscode/scripts)
+if [[ $- == *i* && -z "$VSCODE_INJECTION" ]]; then
+  neofetch
+fi
