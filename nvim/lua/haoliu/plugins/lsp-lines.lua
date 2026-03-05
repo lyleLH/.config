@@ -43,11 +43,6 @@ return {
       {}
     )
 
-    -- 设置更好的诊断图标
-    local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-    end
+    -- Diagnostic signs are defined in lspconfig.lua
   end,
 } 

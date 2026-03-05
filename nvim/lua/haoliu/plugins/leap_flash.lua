@@ -6,11 +6,11 @@
 return {
 	-- Leap.nvim（双字符快速跳转）
 	{
-		"ggandor/leap.nvim",
+		url = "https://codeberg.org/andyg/leap.nvim",
 		config = function()
 			local leap = require("leap")
 			-- 不使用默认映射，仅自定义 'f' 键
-			vim.keymap.set("n", "<leader>f", function()
+			vim.keymap.set("n", "<leader>j", function()
 				leap.leap({ target_windows = { vim.fn.win_getid() } })
 			end, { desc = "Leap 双字符跳转" })
 		end,
@@ -27,9 +27,7 @@ return {
 					char = { enabled = true }, -- 字符搜索
 					search = { enabled = true }, -- 模糊搜索
 				},
-				highlight = {
-					label = { rainbow = { enabled = true } },
-				},
+				label = { rainbow = { enabled = true } },
 			})
 
 			-- 自定义快捷键

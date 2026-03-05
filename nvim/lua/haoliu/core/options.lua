@@ -17,7 +17,6 @@ opt.scroll = 20
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
 
-opt.wrap = true
 opt.textwidth = 80
 opt.colorcolumn = "80"
 vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#72e77a" })
@@ -47,9 +46,6 @@ opt.guifont = { "CaskaydiaCove Nerd Font", ":h14" }
 
 -- backspace
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
-
--- clipboard
-opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 
 -- split windows
 opt.splitright = true -- split vertical window to the right
