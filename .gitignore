@@ -1,5 +1,5 @@
 # ── Claude Code (local per-machine) ──
-.claude/
+.claude/settings.local.json
 nvim/.claude/
 
 # ── Credentials & secrets ──

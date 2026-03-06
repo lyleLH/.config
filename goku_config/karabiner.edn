@@ -64,8 +64,8 @@
     [:u [:open-path "/Applications/Xcode.app"]]
     [:i [:open-path "/Applications/Visual Studio Code.app"]]
     [:o [:open-path "/Applications/Cursor.app"]]
-    [:l [:open-path "/Applications/Lark.app"]]
     [:m [:open-path "/Applications/GitHub Desktop.app"]]
+    [:p [:open-path "/Applications/kitty.app"]]
    ]
   }
   {   :des "o-launch mode"

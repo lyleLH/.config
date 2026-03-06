@@ -338,6 +338,7 @@ CMD
   eval "tmux $tmux_cmd"
 }
 
+
 # ── tx w: window switcher ────────────────────────────
 _tx_win() {
   if ! command -v fzf &>/dev/null; then
