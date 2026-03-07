@@ -1,6 +1,7 @@
 
 
 alias nv="nvim"
+alias cc="claude --dangerously-skip-permissions"
 
 alias myip="curl http://ipecho.net/plain; echo"
 
@@ -17,6 +18,9 @@ alias skhdkey="nv ~/.config/skhd/skhdrc"
 
 alias showalias="nv ~/.config/zsh/alias.zsh"
 alias tmuxconf="nv ~/.config/tmux/.tmux.conf"
+
+# ── Sublime Text ──────────────────────────────────
+alias sublsync='cp ~/Library/Application\ Support/Sublime\ Text/Packages/User/ollama_auto_name.py ~/.config/sublime/ollama_auto_name.py && echo "Synced to ~/.config/sublime/"'
 
 # ── tmux ──────────────────────────────────────────────
 alias t="tmux"

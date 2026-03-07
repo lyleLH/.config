@@ -244,5 +244,5 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # Show system info on new shell (skip in vscode/scripts)
 if [[ $- == *i* && -z "$VSCODE_INJECTION" && -z "$SKIP_NEOFETCH" ]]; then
-  neofetch
+  fastfetch
 fi
