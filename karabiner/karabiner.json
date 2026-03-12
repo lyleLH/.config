@@ -299,7 +299,7 @@
             "key_code" : "i"
           },
           "to" : [ {
-            "shell_command" : "open \"/Applications/Visual Studio Code.app\""
+            "shell_command" : "open \"/Applications/iTerm.app\""
           } ],
           "conditions" : [ {
             "name" : "w-mode",
@@ -318,7 +318,7 @@
               "value" : 1
             }
           }, {
-            "shell_command" : "open \"/Applications/Visual Studio Code.app\""
+            "shell_command" : "open \"/Applications/iTerm.app\""
           } ],
           "from" : {
             "simultaneous" : [ {

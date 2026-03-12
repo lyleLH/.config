@@ -1,0 +1,61 @@
+[
+  // ── Insert mode ────────────────────────────────────
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "j k": "vim::NormalBefore"
+    }
+  },
+
+  // ── Normal & Visual mode ───────────────────────────
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      // Clear search highlights
+      "space n h": "search::SelectAllMatches",
+
+      // Window splits
+      "space s v": "pane::SplitRight",
+      "space s h": "pane::SplitDown",
+      "space s x": "pane::CloseActiveItem",
+      // File explorer
+      "space e e": "workspace::ToggleLeftDock",
+      "space e f": "project_panel::ToggleFocus",
+
+      // Find files / grep
+      "space f f": "file_finder::Toggle",
+      "space f g": "search::ToggleRegex",
+      "space f r": "pane::DeploySearch",
+
+      // Diagnostics
+      "space d": "diagnostics::Deploy",
+      "] d": "editor::GoToDiagnostic",
+      "[ d": "editor::GoToPreviousDiagnostic",
+
+      // LSP
+      "g d": "editor::GoToDefinition",
+      "g D": "editor::GoToDeclaration",
+      "g i": "editor::GoToImplementation",
+      "g t": "editor::GoToTypeDefinition",
+      "g R": "editor::FindAllReferences",
+      "space c a": "editor::ToggleCodeActions",
+      "space r n": "editor::Rename",
+
+      // Tabs
+      "space t n": "pane::ActivateNextItem",
+      "space t p": "pane::ActivatePreviousItem",
+      "space t x": "pane::CloseActiveItem"
+    }
+  },
+
+  // ── Dock navigation ────────────────────────────────
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w l": "workspace::ActivatePaneRight",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w j": "workspace::ActivatePaneDown"
+    }
+  }
+]

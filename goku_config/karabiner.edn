@@ -62,7 +62,7 @@
    :rules [    :w-mode
     [:y [:open-path "/Applications/Sublime Text.app"]]
     [:u [:open-path "/Applications/Xcode.app"]]
-    [:i [:open-path "/Applications/Visual Studio Code.app"]]
+    [:i [:open-path "/Applications/iTerm.app"]]
     [:o [:open-path "/Applications/Cursor.app"]]
     [:m [:open-path "/Applications/GitHub Desktop.app"]]
     [:p [:open-path "/Applications/kitty.app"]]

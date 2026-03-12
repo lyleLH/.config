@@ -64,7 +64,7 @@ return {
 		priority = 1001,
 		config = function()
 			require("catppuccin").setup({
-				flavour = "mocha", -- latte, frappe, macchiato, mocha
+				flavour = "auto", -- auto-detect from vim.opt.background
 				background = {
 					light = "latte",
 					dark = "mocha",

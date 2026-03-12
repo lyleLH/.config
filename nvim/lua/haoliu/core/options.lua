@@ -38,7 +38,21 @@ opt.cursorline = true
 -- turn on termguicolors for tokyonight colorscheme to work
 -- (have to use iterm2 or any other true color terminal)
 opt.termguicolors = true
-opt.background = "dark" -- colorschemes that can be light or dark will be made dark
+-- Auto-detect macOS appearance for dark/light mode
+local function set_bg_from_macos()
+  local result = vim.fn.system("defaults read -g AppleInterfaceStyle 2>/dev/null")
+  if result:match("Dark") then
+    opt.background = "dark"
+  else
+    opt.background = "light"
+  end
+end
+set_bg_from_macos()
+
+-- Re-check on focus (e.g. after toggling macOS appearance)
+vim.api.nvim_create_autocmd("FocusGained", {
+  callback = set_bg_from_macos,
+})
 opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 
 -- Set font for GUI clients (Neovide, etc.)
