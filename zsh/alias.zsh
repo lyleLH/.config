@@ -47,6 +47,9 @@ gwn() {
   local wt_name="${branch//\//-}"
   local git_common=$(git rev-parse --git-common-dir 2>/dev/null)
 
+  echo "Fetching latest from origin..."
+  git fetch origin
+
   if [[ "$git_common" == */.bare ]]; then
     # bare repo 模式: worktree 放在 .bare 同级
     local wt_dir="$(dirname "$git_common")/${wt_name}"
@@ -57,7 +60,7 @@ gwn() {
     mkdir -p "$(dirname "$wt_dir")"
   fi
 
-  git worktree add -b "$branch" "$wt_dir" && cd "$wt_dir"
+  git worktree add -b "$branch" "$wt_dir" origin/main && cd "$wt_dir"
 }
 
 # ── alias-help: custom alias cheatsheet ──────────
