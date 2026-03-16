@@ -8,7 +8,8 @@ grapheme-width-method = unicode
 adjust-cell-width = 0%
 
 # === Theme (Catppuccin Macchiato) ===
-theme = Catppuccin Macchiato
+#theme = Catppuccin Macchiato
+theme = Dayfox
 
 # === Cursor ===
 cursor-style = bar
