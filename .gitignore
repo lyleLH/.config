@@ -1,57 +1,37 @@
-# ── Claude Code (local per-machine) ──
+# Ignore everything by default
+*
+
+# ── Tracked configs (whitelist) ──
+!.gitignore
+!CLAUDE.md
+!README.md
+!.antigenrc
+
+!bat/
+!bat/**
+!gh/
+!gh/**
+!ghostty/
+!ghostty/**
+!kitty/
+!kitty/**
+!git/
+!git/**
+!my_scripts/
+!my_scripts/**
+!nvim/
+!nvim/**
+!tmux/
+!tmux/**
+!uv/
+!uv/**
+!zsh/
+!zsh/**
+!starship.toml
+
+# ── Still ignored within tracked dirs ──
 .claude/
 nvim/.claude/
-
-# ── Credentials & secrets ──
 gh/hosts.yml
-
-# ── Machine-specific ──
-Futu-Mac/
-
-# ── tmux plugins (installed by tpm) ──
 tmux/plugins/
-
-# ── Backups (auto-generated) ──
 **/backups/
-
-# ── Logs ──
-mole/
-
-# ── Zed (local DB) ──
-zed/prompts/prompts-library-db.0.mdb/
-
-# ── Legacy (no longer used) ──
-oh-my-zsh
-/zsh-plugins-custom
-clash/*
-yarn/*
-/raycast
-/coc/extensions
-
-# ── Xcode ──
-xcuserdata/
-*.xcscmblueprint
-*.xccheckout
-build/
-DerivedData/
-*.moved-aside
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-*.hmap
-*.ipa
-*.dSYM.zip
-*.dSYM
-Carthage/Build/
-iOSInjectionProject/
-
-# ── Fastlane ──
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots/**/*.png
-fastlane/test_output

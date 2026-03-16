@@ -1,6 +1,7 @@
 
 
 alias nv="nvim"
+alias cc="claude --dangerously-skip-permissions"
 
 alias myip="curl http://ipecho.net/plain; echo"
 
@@ -17,6 +18,113 @@ alias skhdkey="nv ~/.config/skhd/skhdrc"
 
 alias showalias="nv ~/.config/zsh/alias.zsh"
 alias tmuxconf="nv ~/.config/tmux/.tmux.conf"
+# ── Git Worktree ─────────────────────────────────
+alias gwl="git worktree list"
+alias gwa="git worktree add"
+alias gwr="git worktree remove"
+
+# gwf — fzf worktree switcher: list all worktrees, pick one to cd into
+gwf() {
+  local selected
+  selected=$(git worktree list | fzf \
+    --height=~50% \
+    --header "Select worktree to cd into" \
+    --border --border-label=" git worktrees " \
+    --preview 'git -C {1} log --oneline -10 --color=always' \
+    --preview-window=up:40%)
+
+  [[ -z "$selected" ]] && return
+  local dir=$(echo "$selected" | awk '{print $1}')
+  cd "$dir"
+}
+
+# gwn — create worktree for a new branch
+#   usage: gwn feature/my-thing
+#   bare repo: worktree 放在 .bare 同级目录下 (如 Tofulab-codebase/my-thing/)
+#   normal repo: worktree 放在 ../repo-worktrees/my-thing/
+gwn() {
+  local branch="${1:?Usage: gwn <branch-name>}"
+  local wt_name="${branch//\//-}"
+  local git_common=$(git rev-parse --git-common-dir 2>/dev/null)
+
+  echo "Fetching latest from origin..."
+  git fetch origin
+
+  if [[ "$git_common" == */.bare ]]; then
+    # bare repo 模式: worktree 放在 .bare 同级
+    local wt_dir="$(dirname "$git_common")/${wt_name}"
+  else
+    # 普通 repo 模式: worktree 放在 ../repo-worktrees/
+    local base_dir=$(git rev-parse --show-toplevel 2>/dev/null)
+    local wt_dir="$(dirname "$base_dir")/$(basename "$base_dir")-worktrees/${wt_name}"
+    mkdir -p "$(dirname "$wt_dir")"
+  fi
+
+  git worktree add -b "$branch" "$wt_dir" origin/main && cd "$wt_dir"
+}
+
+# ── alias-help: custom alias cheatsheet ──────────
+ah() {
+  local cheatsheet
+  cheatsheet=$(cat <<'CHEAT'
+═══════════════════════════════════════════════════════
+ Custom Aliases Cheatsheet / 自定义别名速查表
+═══════════════════════════════════════════════════════
+
+[EDITOR 编辑器]
+nv                  | nvim
+keyboard            | 编辑 karabiner.edn (Goku DSL)
+vimkeys             | 编辑 nvim keymaps.lua
+showalias           | 编辑 alias.zsh
+tmuxconf            | 编辑 tmux/.tmux.conf
+xvim                | 编辑 ~/.xvimrc
+
+[GIT WORKTREE]
+gwl                 | git worktree list — 列出所有 worktree
+gwa <path> <branch> | git worktree add — 添加 worktree
+gwr <path>          | git worktree remove — 删除 worktree
+gwf                 | fzf 选择 worktree 并 cd 进去 (带 git log 预览)
+gwn <branch>        | 创建新分支 worktree 并 cd (bare repo 放同级, 普通 repo 放 ../repo-worktrees/)
+
+[TMUX]
+t                   | tmux
+tkill <session>     | tmux kill-session -t
+tx                  | fzf session 管理器 (attach/kill/new/rename)
+tx c                | fzf command palette
+tx w                | fzf window switcher
+tx h                | tmux 快捷键速查表
+
+[THEME 主题]
+dark                | 切换深色主题
+light               | 切换浅色主题
+
+[MISC 其他]
+cc                  | claude --dangerously-skip-permissions
+myip                | 显示公网 IP
+sublsync            | 同步 Sublime Text 配置
+CHEAT
+)
+
+  if command -v fzf &>/dev/null; then
+    echo "$cheatsheet" | fzf \
+      --height=~80% \
+      --header "alias cheatsheet — ESC to close" \
+      --no-sort \
+      --border --border-label=" aliases " \
+      --preview-window=hidden \
+      --ansi
+  else
+    echo "$cheatsheet"
+  fi
+}
+
+alias dark="~/.config/scripts/toggle-theme.sh dark"
+alias light="~/.config/scripts/toggle-theme.sh light"
+alias kitty-dark="kitty +kitten themes --config-file-name dark-theme.auto.conf"
+alias kitty-light="kitty +kitten themes --config-file-name light-theme.auto.conf"
+
+# ── Sublime Text ──────────────────────────────────
+alias sublsync='cp ~/Library/Application\ Support/Sublime\ Text/Packages/User/ollama_auto_name.py ~/.config/sublime/ollama_auto_name.py && echo "Synced to ~/.config/sublime/"'
 
 # ── tmux ──────────────────────────────────────────────
 alias t="tmux"
@@ -337,6 +445,7 @@ CMD
   echo "Running: tmux $tmux_cmd"
   eval "tmux $tmux_cmd"
 }
+
 
 # ── tx w: window switcher ────────────────────────────
 _tx_win() {
