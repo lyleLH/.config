@@ -1,7 +1,8 @@
 
 
 alias nv="nvim"
-alias cc="claude --dangerously-skip-permissions"
+alias scc="claude --dangerously-skip-permissions"
+alias sp='ls -t ~/Pictures/Screenshots/*.png 2>/dev/null | head -1'
 
 alias myip="curl http://ipecho.net/plain; echo"
 
@@ -99,7 +100,7 @@ dark                | 切换深色主题
 light               | 切换浅色主题
 
 [MISC 其他]
-cc                  | claude --dangerously-skip-permissions
+scc                 | claude --dangerously-skip-permissions
 myip                | 显示公网 IP
 sublsync            | 同步 Sublime Text 配置
 CHEAT
