@@ -28,6 +28,14 @@
 !zsh/
 !zsh/**
 !starship.toml
+!quickshell/
+!quickshell/ii/
+!quickshell/ii/services/
+!quickshell/ii/services/ProcessMemory.qml
+!quickshell/ii/modules/
+!quickshell/ii/modules/ii/
+!quickshell/ii/modules/ii/bar/
+!quickshell/ii/modules/ii/bar/ResourcesPopup.qml
 
 # ── Still ignored within tracked dirs ──
 .claude/
