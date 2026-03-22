@@ -985,7 +985,7 @@
             }
           },
           "to" : [ {
-            "shell_command" : "open -na Ghostty"
+            "shell_command" : "open -na kitty"
           } ],
           "type" : "basic"
         }, {

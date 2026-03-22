@@ -96,7 +96,7 @@
   }
   {   :des "alt app launcher + window control (Hyprland style)"
    :rules [
-    [:!Oreturn_or_enter ["open -na Ghostty"]]
+    [:!Oreturn_or_enter ["open -na kitty"]]
     [:!Ow ["open -na 'Google Chrome'"]]
     [:!Oe ["open -na Finder"]]
     [:!Ot ["open -na 'Sublime Text'"]]

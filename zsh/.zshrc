@@ -223,6 +223,15 @@ export PATH="$HOME/.local/bin/:$PATH"
 export PATH=$PATH:$HOME/.maestro/bin
 
 
+# Force kitty tab bar redraw on directory change
+if ls /tmp/kitty-socket-* &>/dev/null; then
+  _kitty_tab_redraw() {
+    local sock=$(ls /tmp/kitty-socket-* 2>/dev/null | head -1)
+    [ -n "$sock" ] && kitty @ --to "unix:${sock}" set-tab-title "$(basename $PWD)" 2>/dev/null
+  }
+  chpwd_functions+=(_kitty_tab_redraw)
+fi
+
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
