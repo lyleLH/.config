@@ -1,15 +1,19 @@
 # === Font ===
-font-family = "JetBrainsMono Nerd Font"
-font-style-bold = "Medium"
-font-style-bold-italic = "Medium Italic"
+font-family = "Maple Mono"
+font-family-bold = "Maple Mono"
+font-family-italic = "Maple Mono"
+font-family-bold-italic = "Maple Mono"
+font-codepoint-map = U+4E00-U+9FFF=LXGW WenKai Mono
+font-codepoint-map = U+3400-U+4DBF=LXGW WenKai Mono
+font-codepoint-map = U+3000-U+303F=LXGW WenKai Mono
+font-codepoint-map = U+FF00-U+FFEF=LXGW WenKai Mono
 font-size = 16
 font-thicken = true
 grapheme-width-method = unicode
 adjust-cell-width = 0%
 
-# === Theme (Catppuccin Macchiato) ===
-#theme = Catppuccin Macchiato
-theme = Dayfox
+# === Theme (auto follow system dark/light) ===
+theme = light:Dayfox,dark:Catppuccin Macchiato
 
 # === Cursor ===
 cursor-style = bar
@@ -28,7 +32,6 @@ macos-option-as-alt = true
 # === Background ===
 background-opacity = 1
 background-blur-radius = 25
-# unfocused windows dim via background-opacity only
 
 # === Scrollback ===
 scrollback-limit = 50000

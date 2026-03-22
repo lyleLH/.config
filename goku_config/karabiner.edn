@@ -78,12 +78,37 @@
     [:f [:open-path "/System/Library/CoreServices/Finder.app"]]
     [:c [:open-path "/Applications/Google Chrome.app"]]
     [:g [:open-path "/Applications/Ghostty.app"]]
+    [:t ["open -na Ghostty"]]
+    [:h [:open-path "/Applications/ChatGPT.app"]]
    ]
   }
   {   :des "hyper-launch mode"
    :rules [    :hyper-mode
     [:s [:open "/Applications/Firefox.app"]]
     [:c [:open-path "/Applications/Cursor.app"]]
+   ]
+  }
+  {   :des "alt app launcher + window control (Hyprland style)"
+   :rules [
+    [:!Oreturn_or_enter ["open -na Ghostty"]]
+    [:!Ow ["open -na 'Google Chrome'"]]
+    [:!Oe ["open -na Finder"]]
+    [:!Ot ["open -na 'Sublime Text'"]]
+    [:!Oc ["open -na ChatGPT"]]
+    [:!Of ["/opt/homebrew/bin/yabai -m window --toggle zoom-fullscreen"]]
+    [:!SOf ["/opt/homebrew/bin/yabai -m window --toggle native-fullscreen"]]
+    [:!Oq ["/opt/homebrew/bin/yabai -m window --close"]]
+   ]
+  }
+  {   :des "move window to space (Hyprland style)"
+   :rules [
+    [:!SO1 ["/opt/homebrew/bin/yabai -m window --space 1; /opt/homebrew/bin/yabai -m space --focus 1"]]
+    [:!SO2 ["/opt/homebrew/bin/yabai -m window --space 2; /opt/homebrew/bin/yabai -m space --focus 2"]]
+    [:!SO3 ["/opt/homebrew/bin/yabai -m window --space 3; /opt/homebrew/bin/yabai -m space --focus 3"]]
+    [:!SO4 ["/opt/homebrew/bin/yabai -m window --space 4; /opt/homebrew/bin/yabai -m space --focus 4"]]
+    [:!SO5 ["/opt/homebrew/bin/yabai -m window --space 5; /opt/homebrew/bin/yabai -m space --focus 5"]]
+    [:!SO6 ["/opt/homebrew/bin/yabai -m window --space 6; /opt/homebrew/bin/yabai -m space --focus 6"]]
+    [:!SO7 ["/opt/homebrew/bin/yabai -m window --space 7; /opt/homebrew/bin/yabai -m space --focus 7"]]
    ]
   }
  ]

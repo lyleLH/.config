@@ -58,22 +58,6 @@ export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"  # asdf shims (primary)
 
 export PATH=$PATH:$HOME/go/bin
 
-# >>> conda initialize (lazy-loaded) >>>
-conda() {
-  unfunction conda
-  local __conda_setup
-  __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-  if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-  elif [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-    . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-  else
-    export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
-  fi
-  unset __conda_setup
-  conda "$@"
-}
-# <<< conda initialize <<<
 
 alias v='nvim' # default Neovim config
 # alias vz='NVIM_APPNAME=nvim-lazyvim nvim' # LazyVim
@@ -241,8 +225,3 @@ export PATH=$PATH:$HOME/.maestro/bin
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-# Show system info on new shell (skip in vscode/scripts)
-if [[ $- == *i* && -z "$VSCODE_INJECTION" && -z "$SKIP_NEOFETCH" ]]; then
-  fastfetch
-fi
