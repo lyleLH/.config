@@ -34,6 +34,7 @@
    "^org\\.vim\\.MacVim$"
   ]
   :all-terminals ["^com\\.apple\\.Terminal$" "^com\\.googlecode\\.iterm2$"]
+  :shottr ["^cc\\.ffitch\\.shottr$"]
  }
  :main [  {   :des "Shift Press Alone to change input source"
    :rules [[:right_command :right_control nil]]
@@ -48,6 +49,11 @@
   }
   {   :des "Change right_option to 4 modifiers combination, f19 when used alone"
    :rules [[:right_option :!COTright_shift nil {:alone [:f18]}]]
+  }
+  {   :des "Shottr: Cmd+S saves and copies file path"
+   :rules [
+    [:!Cs ["sleep 0.5; osascript -e 'tell application \"System Events\" to keystroke \"s\" using command down'; sleep 1; ls -t ~/Desktop/SCR-* 2>/dev/null | head -1 | tr -d '\\n' | pbcopy"] [:shottr]]
+   ]
   }
   {   :des "app"
    :rules [    [:!To :!Cl [:browsers]]

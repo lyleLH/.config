@@ -8,16 +8,16 @@ palette = "catppuccin_macchiato"
 # Starship modules
 [character]
 # Note the use of Catppuccin color 'peach'
-success_symbol = "[[󰄛](#1D3883) ❯](#334F86)"
-error_symbol = "[[󰄛](red) ❯](#334F86)"
+success_symbol = "[[󰄛](#778485) ❯](#BDC2C5)"
+error_symbol = "[[󰄛](red) ❯](#BDC2C5)"
 vimcmd_symbol = "[󰄛 ❮](subtext1)" # For use with zsh-vi-mode
 
 [git_branch]
-style = "bold #1D3883"
+style = "bold #778485"
 
 [directory]
 truncation_length = 4
-style = "bold #334F86"
+style = "bold #BDC2C5"
 
 # Palette definitions
 [palettes.catppuccin_latte]

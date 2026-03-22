@@ -104,6 +104,24 @@
           "type" : "basic"
         } ]
       }, {
+        "description" : "Shottr: Cmd+S saves and copies file path",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "s",
+            "modifiers" : {
+              "mandatory" : [ "left_command" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "sleep 0.5; osascript -e 'tell application \"System Events\" to keystroke \"s\" using command down'; sleep 1; ls -t ~/Desktop/SCR-* 2>/dev/null | head -1 | tr -d '\\n' | pbcopy"
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^cc\\.ffitch\\.shottr$" ]
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
         "description" : "app",
         "manipulators" : [ {
           "from" : {
