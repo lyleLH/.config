@@ -1,5 +1,6 @@
 {
   // ── Appearance ─────────────────────────────────────
+  "agent_ui_font_size": 16.0,
   "agent": {
     "dock": "left",
     "default_width": 640,
@@ -30,9 +31,9 @@
     }
   },
   "theme": {
-    "mode": "dark",
+    "mode": "system",
     "light": "Ayu Light",
-    "dark": "Catppuccin Latte (Blue Blur+)"
+    "dark": "Catppuccin Frappé (Blue Blur+)"
   },
   "icon_theme": "Catppuccin Mocha",
   "buffer_font_family": "Maple Mono",
@@ -46,7 +47,7 @@
   "soft_wrap": "none",
   "show_whitespaces": "boundary",
   "relative_line_numbers": "enabled",
-  "cursor_blink": false,
+  "cursor_blink": true,
   "scroll_beyond_last_line": "off",
   "vertical_scroll_margin": 15,
   "gutter": {

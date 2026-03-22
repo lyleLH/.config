@@ -45,5 +45,18 @@ alt - 0x1B : yabai -m window --resize right:-50:0 || yabai -m window --resize le
 alt - 0x2C : yabai -m space --layout bsp    # alt-/
 shift + alt - 0x2C : yabai -m space --layout stack
 
+# Balance all windows equally
+alt - b : yabai -m space --balance
+
+# Rotate layout
+alt - r : yabai -m space --rotate 90
+
+# Mirror layout
+alt - x : yabai -m space --mirror x-axis
+alt - y : yabai -m space --mirror y-axis
+
+# Toggle stack layout (monocle mode, cycle with alt-n)
+alt - s : yabai -m space --layout "$(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end')"
+
 # Close window
 alt - q : yabai -m window --close

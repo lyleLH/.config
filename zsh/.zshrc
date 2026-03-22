@@ -57,6 +57,7 @@ export LDFLAGS="-L/opt/homebrew/opt/libyaml/lib"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"  # asdf shims (primary)
 
 export PATH=$PATH:$HOME/go/bin
+export UNSPLASH_ACCESS_KEY="sgPiQr5uhTgbukBgxQzG1uCjC73BwT-BdY7-4ROjzFU"
 
 
 alias v='nvim' # default Neovim config

@@ -30,7 +30,7 @@ macos-titlebar-style = tabs
 macos-option-as-alt = true
 
 # === Background ===
-background-opacity = 1
+background-opacity = 0.98
 background-blur-radius = 25
 
 # === Scrollback ===
