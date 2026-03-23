@@ -8,18 +8,18 @@ from kitty.tab_bar import (
 )
 from kitty.boss import get_boss
 
-# Directory-to-color mapping (0xRRGGBB)
+# Directory-to-color mapping (medium depth, white text readable in both modes)
 DIR_COLORS = {
-    "Documents/GitHub": 0x89b4fa,
-    "Desktop":          0xf38ba8,
-    "Downloads":        0xfab387,
-    "Documents":        0xa6e3a1,
-    ".config":          0xcba6f7,
-    "development":      0x94e2d5,
-    "notes":            0xf9e2af,
+    "Documents/GitHub": 0x2563eb,
+    "Desktop":          0xdc2626,
+    "Downloads":        0xd97706,
+    "Documents":        0x16a34a,
+    ".config":          0x7c3aed,
+    "development":      0x0d9488,
+    "notes":            0xca8a04,
 }
 
-DARK_FG = 0x1e1e2e
+TAB_FG = 0xffffff
 
 
 def _get_cwd(tab):
@@ -72,11 +72,11 @@ def draw_tab(
     # Override screen cursor colors before draw_tab_with_powerline reads them
     if tab.is_active and dir_color is not None:
         screen.cursor.bg = as_rgb(dir_color)
-        screen.cursor.fg = as_rgb(DARK_FG)
+        screen.cursor.fg = as_rgb(TAB_FG)
 
     draw_data = draw_data._replace(
         title_template=(
-            "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}"
+            "{bell_symbol}{activity_symbol}"
             " {index} "
             + layout_icon
             + " 󰉋 " + (dir_name or "/")
