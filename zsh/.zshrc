@@ -61,6 +61,7 @@ export UNSPLASH_ACCESS_KEY="sgPiQr5uhTgbukBgxQzG1uCjC73BwT-BdY7-4ROjzFU"
 
 
 alias v='nvim' # default Neovim config
+alias fixaudio='sudo killall coreaudiod' # fix simulator audio crackling
 # alias vz='NVIM_APPNAME=nvim-lazyvim nvim' # LazyVim
 alias vc='NVIM_APPNAME=nvim-nvchad nvim' # NvChad
 # alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart
