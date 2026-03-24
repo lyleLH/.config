@@ -1,0 +1,11 @@
+Music/
+Movies/
+Library/
+.Trash/
+.build/
+DerivedData/
+node_modules/
+__pycache__/
+.git/
+.DS_Store
+.cache/

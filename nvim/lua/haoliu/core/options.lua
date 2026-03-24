@@ -2,6 +2,10 @@ vim.cmd("let g:netrw_liststyle = 3")
 
 local opt = vim.opt
 
+-- 命令行补全（:w 时按 Tab 补全路径）
+opt.wildmenu = true
+opt.wildmode = "longest:full,full"
+
 -- 保存撤销历史，即使关闭 Neovim 也能恢复
 opt.undofile = true
 opt.undodir = vim.fn.expand("~/.nvim/undo") -- 确保目录存在
@@ -13,13 +17,15 @@ opt.scrolloff = 15
 opt.relativenumber = true
 opt.number = true
 
-opt.scroll = 20
+vim.api.nvim_create_autocmd("VimResized", {
+  callback = function()
+    opt.scroll = math.floor(vim.o.lines / 2)
+  end,
+})
+opt.scroll = math.floor(vim.o.lines / 2)
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
 
-opt.textwidth = 80
-opt.colorcolumn = "80"
-vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#72e77a" })
 
 -- tabs & indentation
 opt.tabstop = 2 -- 2 spaces for tabs (prettier default)

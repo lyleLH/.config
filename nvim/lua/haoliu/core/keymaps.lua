@@ -25,3 +25,6 @@ keymap.set("n", "<leader>ma", "<cmd>AerialToggle!<CR>", { desc = "Toggle aerial"
 
 -- theme switching
 keymap.set("n", "<leader>tt", "<cmd>Telescope colorscheme<cr>", { desc = "Switch colorscheme" })
+
+-- projects
+keymap.set("n", "<leader>fp", "<cmd>Telescope projects<cr>", { desc = "Switch project" })

@@ -1,0 +1,11 @@
+--glob=!Music/
+--glob=!Movies/
+--glob=!Library/
+--glob=!.Trash/
+--glob=!.build/
+--glob=!DerivedData/
+--glob=!node_modules/
+--glob=!__pycache__/
+--glob=!.git/
+--glob=!.DS_Store
+--glob=!.cache/

@@ -1,4 +1,7 @@
 
+# --- Ripgrep config ---
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
+
 # --- PATH (must be before everything) ---
 export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin:/usr/local/go/bin:/Users/hao92/.cargo/bin:/Applications/iTerm.app/Contents/Resources/utilities
 export HOMEBREW_PREFIX="/opt/homebrew"
@@ -48,7 +51,6 @@ export PATH=$HOME/development/flutter/bin:$PATH
 export GOKU_EDN_CONFIG_FILE="$HOME/.config/goku_config/karabiner.edn"
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/hao92/.lmstudio/bin"
 
 export RUBY_YJIT_ENABLE=1
 export RUBY_CONFIGURE_OPTS="--with-zlib-dir=/opt/homebrew/opt/zlib --with-openssl-dir=/opt/homebrew/opt/openssl@1.1 --with-readline-dir=/opt/homebrew/opt/readline --with-libyaml-dir=/opt/homebrew/opt/libyaml --with-gdbm-dir=/opt/homebrew/opt/gdbm"
@@ -58,6 +60,13 @@ export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"  # asdf shims (primary)
 
 export PATH=$PATH:$HOME/go/bin
 export UNSPLASH_ACCESS_KEY="sgPiQr5uhTgbukBgxQzG1uCjC73BwT-BdY7-4ROjzFU"
+
+# Ollama optimization for Apple Silicon
+export OLLAMA_FLASH_ATTENTION=1      # 减少内存，加速推理，无质量损失
+export OLLAMA_KV_CACHE_TYPE=q8_0     # KV缓存量化，内存减半
+export OLLAMA_KEEP_ALIVE=5m          # 5分钟无操作自动卸载模型
+export OLLAMA_NUM_PARALLEL=4         # 并行请求数
+export OLLAMA_MAX_LOADED_MODELS=1    # 只保留一个模型在内存
 
 
 alias v='nvim' # default Neovim config
@@ -236,3 +245,7 @@ fi
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# Added by LM Studio CLI (lms)
+# End of LM Studio CLI section
+

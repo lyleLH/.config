@@ -62,7 +62,22 @@ return {
 			{ "]", group = "Next" },
 			{ "g", group = "Go to" },
 
-			-- Keybindings only defined here (no plugin file owns them)
+			-- Cheatsheet (display only, no action)
+			{ "<leader>?", group = "Cheatsheet" },
+			{ "<leader>?f", function() end, desc = ":w <path>  Save new file with path" },
+			{ "<leader>?F", function() end, desc = ":saveas <path>  Save as new name" },
+			{ "<leader>?r", function() end, desc = ":e <path>  Open/reload file" },
+			{ "<leader>?d", function() end, desc = ":!mkdir -p <dir>  Create directory" },
+			{ "<leader>?R", function() end, desc = ":file <name>  Rename current buffer" },
+			{ "<leader>?x", function() end, desc = ":!rm <path>  Delete file" },
+			{ "<leader>?c", function() end, desc = ":cd <dir>  Change working directory" },
+			{ "<leader>?p", function() end, desc = ":pwd  Show current directory" },
+			{ "<leader>?b", function() end, desc = ":bd  Close current buffer" },
+			{ "<leader>?s", function() end, desc = ":source %  Source current file" },
+			{ "<leader>?m", function() end, desc = ":%s/old/new/g  Replace all in file" },
+			{ "<leader>?e", function() end, desc = ":enew  New empty buffer" },
+
+		-- Keybindings only defined here (no plugin file owns them)
 			{
 				"<leader>C",
 				function() require("monokai-pro").select_filter() end,

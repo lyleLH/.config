@@ -66,7 +66,6 @@
   }
   {   :des "w - launch mode"
    :rules [    :w-mode
-    [:y [:open-path "/Applications/Sublime Text.app"]]
     [:u [:open-path "/Applications/Xcode.app"]]
     [:i [:open-path "/Applications/iTerm.app"]]
     [:o [:open-path "/Applications/Cursor.app"]]
@@ -99,8 +98,10 @@
     [:!Oreturn_or_enter ["open -na kitty"]]
     [:!Ow ["open -na 'Google Chrome'"]]
     [:!Oe ["open -na Finder"]]
-    [:!Ot ["open -na 'Sublime Text'"]]
+    [:!Ot ["open -na Ghostty"]]
     [:!Oc ["open -na ChatGPT"]]
+    [:!Og ["open -na Ghostty"]]
+    [:!Ov ["/Applications/Ghostty.app/Contents/MacOS/ghostty -e /Users/hao92/.config/scripts/open-nvim.sh &"]]
     [:!Of ["/opt/homebrew/bin/yabai -m window --toggle zoom-fullscreen"]]
     [:!SOf ["/opt/homebrew/bin/yabai -m window --toggle native-fullscreen"]]
     [:!Oq ["/opt/homebrew/bin/yabai -m window --close"]]

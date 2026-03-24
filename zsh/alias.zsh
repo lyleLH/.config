@@ -101,7 +101,6 @@ light               | 切换浅色主题
 [MISC 其他]
 cc                  | claude --dangerously-skip-permissions
 myip                | 显示公网 IP
-sublsync            | 同步 Sublime Text 配置
 CHEAT
 )
 
@@ -120,11 +119,112 @@ CHEAT
 
 alias dark="~/.config/scripts/toggle-theme.sh dark"
 alias light="~/.config/scripts/toggle-theme.sh light"
+
+# ── Ghostty Shader ───────────────────────────────
+shader() {
+  local config="$HOME/.config/ghostty/config"
+  local -a dirs=(
+    "$HOME/ghostty-shaders"
+    "$HOME/ghostty-cursor-shaders"
+    "$HOME/ghostty-shaders-crt"
+  )
+
+  # Presets: shader combo <name>
+  if [[ "$1" == "combo" ]]; then
+    local presets=(
+      "全复古CRT|in-game-crt-clean.glsl+tft.glsl"
+      "LCD+CRT|tft-crt.glsl"
+      "复古绿屏|retro-terminal.glsl"
+      "星空+光标拖尾|starfield.glsl+cursor_tail.glsl"
+      "琥珀CRT|amber-crt-clean.glsl"
+      "绿色CRT|green-crt-clean.glsl"
+      "蓝色CRT|blue-crt-clean.glsl"
+      "矩阵雨|inside-the-matrix.glsl"
+    )
+    local picked
+    picked=$(printf '%s\n' "${presets[@]}" | cut -d'|' -f1 | fzf \
+      --height=~50% \
+      --header "Pick a combo (ESC=cancel)" \
+      --border --border-label=" shader combos ")
+    [[ -z "$picked" ]] && return
+
+    local shaders_str=""
+    for p in "${presets[@]}"; do
+      if [[ "${p%%|*}" == "$picked" ]]; then
+        shaders_str="${p#*|}"
+        break
+      fi
+    done
+
+    sed -i '' '/^custom-shader/d' "$config"
+    sed -i '' '/^custom-shader-animation/d' "$config"
+    local needs_anim=false
+    IFS='+' read -rA shader_list <<< "$shaders_str"
+    for s in "${shader_list[@]}"; do
+      local found=""
+      for d in "${dirs[@]}"; do
+        [[ -f "$d/$s" ]] && found="$d/$s" && break
+      done
+      if [[ -n "$found" ]]; then
+        echo "custom-shader = $found" >> "$config"
+        # animated shaders need animation
+        case "$s" in starfield*|just-snow*|cursor_*|inside-the-matrix*|fireworks*|water*|drunkard*)
+          needs_anim=true ;;
+        esac
+      else
+        echo "Warning: $s not found"
+      fi
+    done
+    [[ "$needs_anim" == true ]] && echo "custom-shader-animation = always" >> "$config"
+    echo "Combo → $picked"
+    return
+  fi
+
+  if [[ "$1" == "off" ]]; then
+    sed -i '' '/^custom-shader/d' "$config"
+    sed -i '' '/^custom-shader-animation/d' "$config"
+    echo "Shader disabled"
+    return
+  fi
+
+  # Single shader picker from all repos
+  local all_shaders=()
+  for d in "${dirs[@]}"; do
+    [[ -d "$d" ]] && for f in "$d"/*.glsl; do
+      [[ -f "$f" ]] && all_shaders+=("$(basename "$f" .glsl)|$f")
+    done
+  done
+
+  local selected
+  if [[ -n "$1" ]]; then
+    local found=""
+    for entry in "${all_shaders[@]}"; do
+      [[ "${entry%%|*}" == "$1" ]] && found="${entry#*|}" && break
+    done
+    [[ -z "$found" ]] && echo "Not found: $1" && return 1
+    selected="$found"
+  else
+    selected=$(printf '%s\n' "${all_shaders[@]}" | cut -d'|' -f1 | sort -u | fzf \
+      --height=~50% \
+      --header "Pick a shader (ESC=cancel) | 'shader combo' for presets" \
+      --border --border-label=" ghostty shaders " \
+      --preview-window=hidden)
+    [[ -z "$selected" ]] && return
+    for entry in "${all_shaders[@]}"; do
+      [[ "${entry%%|*}" == "$selected" ]] && selected="${entry#*|}" && break
+    done
+  fi
+
+  sed -i '' '/^custom-shader/d' "$config"
+  sed -i '' '/^custom-shader-animation/d' "$config"
+  echo "custom-shader = $selected" >> "$config"
+  case "$(basename "$selected")" in starfield*|just-snow*|cursor_*|inside-the-matrix*|fireworks*|water*|drunkard*)
+    echo "custom-shader-animation = always" >> "$config" ;;
+  esac
+  echo "Shader → $(basename "$selected" .glsl)"
+}
 alias kitty-dark="kitty +kitten themes --config-file-name dark-theme.auto.conf"
 alias kitty-light="kitty +kitten themes --config-file-name light-theme.auto.conf"
-
-# ── Sublime Text ──────────────────────────────────
-alias sublsync='cp ~/Library/Application\ Support/Sublime\ Text/Packages/User/ollama_auto_name.py ~/.config/sublime/ollama_auto_name.py && echo "Synced to ~/.config/sublime/"'
 
 # ── tmux ──────────────────────────────────────────────
 alias t="tmux"
