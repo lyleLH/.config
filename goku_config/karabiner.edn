@@ -36,7 +36,10 @@
   :all-terminals ["^com\\.apple\\.Terminal$" "^com\\.googlecode\\.iterm2$"]
   :shottr ["^cc\\.ffitch\\.shottr$"]
  }
- :main [  {   :des "Shift Press Alone to change input source"
+ :main [  {   :des "F22 to Globe/fn key"
+   :rules [[:f22 :fn]]
+  }
+  {   :des "Shift Press Alone to change input source"
    :rules [[:right_command :right_control nil]]
   }
   {:des "XXXXX" :rules [[:f16 :!COTright_shift nil]]}
