@@ -79,6 +79,3 @@ keybind = cmd+shift+comma=open_config
 keybind = cmd+k=clear_screen
 confirm-close-surface = false
 auto-update = check
-custom-shader = /Users/hao92/ghostty-shaders/starfield.glsl
-custom-shader = /Users/hao92/ghostty-cursor-shaders/cursor_tail.glsl
-custom-shader-animation = always

@@ -36,7 +36,10 @@
   :all-terminals ["^com\\.apple\\.Terminal$" "^com\\.googlecode\\.iterm2$"]
   :shottr ["^cc\\.ffitch\\.shottr$"]
  }
- :main [  {   :des "F22 to Globe/fn key"
+ :main [  {   :des "F21 to trigger Xcode build & run"
+   :rules [[:f21 ["~/.config/scripts/xcode-run.sh"]]]
+  }
+  {   :des "F22 to Globe/fn key"
    :rules [[:f22 :fn]]
   }
   {   :des "Shift Press Alone to change input source"

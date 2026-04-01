@@ -41,6 +41,7 @@ return {
 				"gitignore",
 				"query",
 				"vimdoc",
+				"objc",
 				"c",
 				"dart",
 			},

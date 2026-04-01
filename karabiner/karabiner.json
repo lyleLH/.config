@@ -31,6 +31,17 @@
           } ]
         } ]
       }, {
+        "description" : "F21 to trigger Xcode build & run",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "f21"
+          },
+          "to" : [ {
+            "shell_command" : "~/.config/scripts/xcode-run.sh"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
         "description" : "F22 to Globe/fn key",
         "manipulators" : [ {
           "from" : {

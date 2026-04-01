@@ -107,7 +107,6 @@ yabai -m space 7 --label misc
 yabai -m rule --add app="^Google Chrome$" space=1
 yabai -m rule --add app="^Firefox$" space=1
 yabai -m rule --add app="^Sublime Text$" space=2
-yabai -m rule --add app="^Zed$" space=2
 # Terminals: no fixed space, open on current workspace
 # yabai -m rule --add app="^Ghostty$" space=3
 # yabai -m rule --add app="^iTerm2$" space=3

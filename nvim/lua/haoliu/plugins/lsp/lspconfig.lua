@@ -136,6 +136,23 @@ return {
 			},
 		})
 
+		vim.lsp.config("sourcekit", {
+			cmd = { "sourcekit-lsp" },
+			filetypes = { "swift", "objc", "objcpp" },
+			capabilities = vim.tbl_deep_extend("force", capabilities, {
+				general = { positionEncodings = { "utf-16" } },
+				offsetEncoding = { "utf-16" },
+			}),
+			root_markers = {
+				"buildServer.json",
+				"*.xcodeproj",
+				"*.xcworkspace",
+				"Package.swift",
+				".git",
+			},
+		})
+		vim.lsp.enable("sourcekit")
+
 		vim.lsp.config("lua_ls", {
 			settings = {
 				Lua = {

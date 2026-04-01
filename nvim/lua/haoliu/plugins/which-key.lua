@@ -58,6 +58,8 @@ return {
 			{ "<leader>c", group = "Code" },
 			{ "<leader>r", group = "Refactor" },
 			{ "<leader>n", group = "Nvim-Tree" },
+			{ "<leader>a", group = "AI/Claude" },
+			{ "<leader>x", group = "Xcodebuild" },
 			{ "[", group = "Previous" },
 			{ "]", group = "Next" },
 			{ "g", group = "Go to" },

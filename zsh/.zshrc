@@ -1,4 +1,7 @@
 
+# --- API Keys ---
+[[ -f ~/.api_keys ]] && source ~/.api_keys
+
 # --- Ripgrep config ---
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
 
@@ -36,6 +39,8 @@ zinit light zsh-users/zsh-completions
 zinit light agkozak/zsh-z
 
 # Load completions
+# opencli completion
+fpath=(/Users/hao92/.zsh/completions $fpath)
 autoload -Uz compinit && compinit
 zinit cdreplay -q
 
@@ -248,4 +253,3 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # Added by LM Studio CLI (lms)
 # End of LM Studio CLI section
-

@@ -2,6 +2,7 @@
 
 alias nv="nvim"
 alias cc="claude --dangerously-skip-permissions"
+alias cx="codex --sandbox danger-full-access"
 
 alias myip="curl http://ipecho.net/plain; echo"
 
@@ -100,6 +101,7 @@ light               | 切换浅色主题
 
 [MISC 其他]
 cc                  | claude --dangerously-skip-permissions
+cx                  | codex --sandbox danger-full-access
 myip                | 显示公网 IP
 CHEAT
 )
