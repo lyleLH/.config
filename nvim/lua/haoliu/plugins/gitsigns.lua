@@ -2,6 +2,7 @@ return {
   "lewis6991/gitsigns.nvim",
   event = { "BufReadPre", "BufNewFile" },
   opts = {
+    show_deleted = false, -- toggle with <leader>hx
     on_attach = function(bufnr)
       local gs = package.loaded.gitsigns
 
@@ -34,6 +35,8 @@ return {
         gs.blame_line({ full = true })
       end, "Blame line")
       map("n", "<leader>hB", gs.toggle_current_line_blame, "Toggle line blame")
+      map("n", "<leader>hx", gs.toggle_deleted, "Toggle show deleted")
+      map("n", "<leader>hq", "<cmd>diffoff | only<cr>", "Quit diff view")
 
       map("n", "<leader>hd", gs.diffthis, "Diff this")
       map("n", "<leader>hD", function()

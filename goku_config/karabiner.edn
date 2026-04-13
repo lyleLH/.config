@@ -53,6 +53,9 @@
   {   :des "caps_lock to control"
    :rules [[:caps_lock :right_control nil]]
   }
+  {   :des "Ctrl+a switches to English input first"
+   :rules [[:!Ta ["/opt/homebrew/bin/macism com.apple.keylayout.ABC" :!Ta]]]
+  }
   {   :des "Change right_option to 4 modifiers combination, f19 when used alone"
    :rules [[:right_option :!COTright_shift nil {:alone [:f18]}]]
   }
@@ -111,6 +114,10 @@
     [:!Of ["/opt/homebrew/bin/yabai -m window --toggle zoom-fullscreen"]]
     [:!SOf ["/opt/homebrew/bin/yabai -m window --toggle native-fullscreen"]]
     [:!Oq ["/opt/homebrew/bin/yabai -m window --close"]]
+    [:!Os ["/Users/hao92/.config/scripts/scratchpad.sh toggle"]]
+    [:!SOs ["/Users/hao92/.config/scripts/scratchpad.sh move"]]
+    [:!Od ["/Users/hao92/.config/scripts/scratchpad-app.sh Reminders"]]
+    [:!Om ["/Users/hao92/.config/scripts/scratchpad-app.sh Marta"]]
    ]
   }
   {   :des "move window to space (Hyprland style)"

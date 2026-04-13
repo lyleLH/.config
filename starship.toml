@@ -18,8 +18,8 @@ right_format = '$time'
 symbol = ' '
 
 [character]
-success_symbol = "[[󰄛](#3562BB) ❯](#3B5FC1)"
-error_symbol = "[[󰄛](red) ❯](#3B5FC1)"
+success_symbol = "[[󰄛](#79A3D2) ❯](#8DAFD9)"
+error_symbol = "[[󰄛](red) ❯](#8DAFD9)"
 vimcmd_symbol = "[❮](green)"
 
 [directory]

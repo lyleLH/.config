@@ -21,6 +21,7 @@ return {
       },
       -- change folder arrow icons
       renderer = {
+        highlight_git = "name",
         indent_markers = {
           enable = true,
         },

@@ -111,6 +111,23 @@
           "type" : "basic"
         } ]
       }, {
+        "description" : "Ctrl+a switches to English input first",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "a",
+            "modifiers" : {
+              "mandatory" : [ "left_control" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "/opt/homebrew/bin/macism com.apple.keylayout.ABC"
+          }, {
+            "key_code" : "a",
+            "modifiers" : [ "left_control" ]
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
         "description" : "Change right_option to 4 modifiers combination, f19 when used alone",
         "manipulators" : [ {
           "to_if_alone" : [ {
@@ -1062,6 +1079,50 @@
           },
           "to" : [ {
             "shell_command" : "/opt/homebrew/bin/yabai -m window --close"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "s",
+            "modifiers" : {
+              "mandatory" : [ "left_option" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "/Users/hao92/.config/scripts/scratchpad.sh toggle"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "s",
+            "modifiers" : {
+              "mandatory" : [ "left_option", "left_shift" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "/Users/hao92/.config/scripts/scratchpad.sh move"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "d",
+            "modifiers" : {
+              "mandatory" : [ "left_option" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "/Users/hao92/.config/scripts/scratchpad-app.sh Reminders"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "m",
+            "modifiers" : {
+              "mandatory" : [ "left_option" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "/Users/hao92/.config/scripts/scratchpad-app.sh Marta"
           } ],
           "type" : "basic"
         } ]

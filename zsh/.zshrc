@@ -62,6 +62,7 @@ export RUBY_CONFIGURE_OPTS="--with-zlib-dir=/opt/homebrew/opt/zlib --with-openss
 export CFLAGS="-Wno-error=implicit-function-declaration"
 export LDFLAGS="-L/opt/homebrew/opt/libyaml/lib"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"  # asdf shims (primary)
+export PATH="$HOME/.local/bin:$PATH"  # prefer local wrappers (e.g. opencode --pure)
 
 export PATH=$PATH:$HOME/go/bin
 export UNSPLASH_ACCESS_KEY="sgPiQr5uhTgbukBgxQzG1uCjC73BwT-BdY7-4ROjzFU"
@@ -70,11 +71,13 @@ export UNSPLASH_ACCESS_KEY="sgPiQr5uhTgbukBgxQzG1uCjC73BwT-BdY7-4ROjzFU"
 export OLLAMA_FLASH_ATTENTION=1      # 减少内存，加速推理，无质量损失
 export OLLAMA_KV_CACHE_TYPE=q8_0     # KV缓存量化，内存减半
 export OLLAMA_KEEP_ALIVE=5m          # 5分钟无操作自动卸载模型
-export OLLAMA_NUM_PARALLEL=4         # 并行请求数
+export OLLAMA_CONTEXT_LENGTH=65536   # 默认上下文窗口，适配 opencode
+export OLLAMA_NUM_PARALLEL=2         # 并行请求数（opencode 场景更稳）
 export OLLAMA_MAX_LOADED_MODELS=1    # 只保留一个模型在内存
 
 
 alias v='nvim' # default Neovim config
+alias opencode="$HOME/.local/bin/opencode"
 alias fixaudio='sudo killall coreaudiod' # fix simulator audio crackling
 # alias vz='NVIM_APPNAME=nvim-lazyvim nvim' # LazyVim
 alias vc='NVIM_APPNAME=nvim-nvchad nvim' # NvChad
@@ -253,3 +256,20 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # Added by LM Studio CLI (lms)
 # End of LM Studio CLI section
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/hao92/.lmstudio/bin"
+# End of LM Studio CLI section
+
+
+# Added by Antigravity
+export PATH="/Users/hao92/.antigravity/antigravity/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/hao92/.antigravity/antigravity/bin:$PATH"
+export PATH="$(npm prefix -g)/bin:$PATH"
+
+# CLIProxyAPI Configuration for Gemini CLI
+# CLIProxyAPI Configuration for Gemini CLI (OAuth Mode)
+export CODE_ASSIST_ENDPOINT="http://127.0.0.1:8317"
+# End CLIProxyAPI Configuration for Gemini CLI
