@@ -62,8 +62,20 @@ yabai -m signal --add event=application_terminated action="yabai -m query --wind
 # Auto-focus next window when app is hidden
 yabai -m signal --add event=window_minimized action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus recent"
 yabai -m signal --add event=application_hidden action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus recent"
-# Auto-focus first window when switching spaces
-yabai -m signal --add event=space_changed action="yabai -m window --focus first 2>/dev/null"
+# Track focused window per space (for restoring focus after space switch)
+yabai -m signal --add event=window_focused action='
+  WIN_SPACE=$(yabai -m query --windows --window $YABAI_WINDOW_ID 2>/dev/null | /opt/homebrew/bin/jq -r ".space // empty" 2>/dev/null)
+  [ -n "$WIN_SPACE" ] && echo $YABAI_WINDOW_ID > /tmp/yabai_space_focus_${WIN_SPACE}
+'
+# Restore focused window when switching spaces
+yabai -m signal --add event=space_changed action='
+  SAVED=$(cat /tmp/yabai_space_focus_${YABAI_SPACE_INDEX} 2>/dev/null)
+  if [ -n "$SAVED" ]; then
+    yabai -m window --focus "$SAVED" 2>/dev/null || yabai -m window --focus first 2>/dev/null
+  else
+    yabai -m window --focus first 2>/dev/null
+  fi
+'
 # Auto-float windows that can't be resized (dialogs, preferences, wizards)
 yabai -m signal --add event=window_created action='yabai -m query --windows --window $YABAI_WINDOW_ID | /opt/homebrew/bin/jq -er "if .\"can-resize\" == false and .\"is-floating\" == false then halt_error else empty end" 2>/dev/null && yabai -m window $YABAI_WINDOW_ID --toggle float 2>/dev/null'
 

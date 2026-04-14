@@ -20,6 +20,9 @@ else
         $YABAI -m window "$WINDOW_ID" --deminimize 2>/dev/null
         CURRENT_SPACE=$($YABAI -m query --spaces --space | $JQ '.index')
         $YABAI -m window "$WINDOW_ID" --space "$CURRENT_SPACE" 2>/dev/null
+        # Ensure window stays floating after moving to new space
+        IS_FLOATING=$($YABAI -m query --windows --window "$WINDOW_ID" | $JQ '.["is-floating"]')
+        [ "$IS_FLOATING" = "false" ] && $YABAI -m window "$WINDOW_ID" --toggle float 2>/dev/null
         $YABAI -m window --focus "$WINDOW_ID" 2>/dev/null
         $YABAI -m window "$WINDOW_ID" --grid 6:6:1:1:4:4 2>/dev/null
     else
