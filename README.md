@@ -53,3 +53,36 @@ git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 `ln -s ~/Documents/GitHub/oh-my-zsh ~/.config/`
 
 ### nvim 和 其他 app 后续的安装也都会安装在.config 目录下
+
+
+## cmux + tmux 集成
+
+[cmux](https://www.cmux.dev/) 是基于 Ghostty 的终端，侧边栏的每个 workspace 自动对应一个 tmux session，实现持久化。
+
+### 映射关系
+
+| cmux | tmux |
+|------|------|
+| workspace（侧边栏项） | session |
+| tmux 内部管理 | window / pane |
+
+### 工作原理
+
+1. **zshrc 自动绑定**：cmux 终端启动时通过 `precmd` hook 获取当前 workspace 名称，自动 `exec tmux new-session -As <name>` 进入同名 tmux session
+2. **同步脚本**：`cmux/cmux-tmux-sync.sh` 将已有 tmux session 批量创建为 cmux workspace
+
+### 使用方式
+
+```sh
+# cmux 启动后同步已有 tmux session 到侧边栏
+~/.config/cmux/cmux-tmux-sync.sh
+
+# 手动新建 workspace 时，命名后自动创建同名 tmux session
+# 关掉 cmux 后 tmux session 不丢，重开后自动 reattach
+```
+
+### 注意事项
+
+- workspace 命名避免 `.` `:` `/` `\` 等特殊字符（会被替换为 `-`）
+- 每个 workspace 保留 1 个 surface，window/pane 由 tmux 管理
+- tmux 持久化依赖 `tmux-resurrect` + `tmux-continuum` 插件

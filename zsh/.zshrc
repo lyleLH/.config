@@ -100,6 +100,34 @@ vv() {
 }
 
 
+# ── cmux + tmux 自动绑定 ─────────────────────────────
+# cmux workspace 内自动 attach 同名 tmux session
+# cmux 启动时 socket 还没就绪，所以用 precmd hook 延迟到首次 prompt 时执行
+if [[ -n "$CMUX_WORKSPACE_ID" && -z "$TMUX" ]]; then
+  _cmux_tmux_auto_attach() {
+    # 只执行一次，立即移除 hook
+    add-zsh-hook -d precmd _cmux_tmux_auto_attach
+
+    local ws_name tmux_name
+    # 此时 cmux socket 应该已就绪，但保险起见重试几次
+    for _i in 1 2 3 4 5 6 7 8 9 10; do
+      ws_name=$(cmux tree --workspace "$CMUX_WORKSPACE_ID" 2>/dev/null \
+        | sed -n 's/.*workspace workspace:[0-9]* "\(.*\)".*/\1/p')
+      [[ -n "$ws_name" ]] && break
+      sleep 0.5
+    done
+
+    [[ -z "$ws_name" ]] && return
+
+    tmux_name=$(echo "$ws_name" | tr '.:/\\' '-' | sed 's/^-*//' | cut -c1-50)
+    [[ -z "$tmux_name" ]] && return
+
+    exec tmux new-session -As "$tmux_name"
+  }
+  autoload -Uz add-zsh-hook
+  add-zsh-hook precmd _cmux_tmux_auto_attach
+fi
+
 alias t="tmux"
 alias ta="tmux attach-session -t"
 alias tnew="tmux new-session -s"
