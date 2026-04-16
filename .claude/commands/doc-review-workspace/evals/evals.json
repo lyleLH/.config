@@ -1,0 +1,23 @@
+{
+  "skill_name": "doc-review",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "/doc-review ~/.claude/plans/misty-spinning-orbit.md",
+      "expected_output": "Multi-round review of the color editor plan with structured feedback, auto-fixes, and a .review.md companion log",
+      "files": ["~/.claude/plans/misty-spinning-orbit.md"]
+    },
+    {
+      "id": 2,
+      "prompt": "/doc-review",
+      "expected_output": "Skill discovers available plan files, presents picker to user, then runs the review loop on the selected file",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "/doc-review /tmp/test-plan-with-issues.md --max-iterations 2",
+      "expected_output": "Identifies multiple issues in the deliberately weak plan (vague steps, no rollback plan, missing risk analysis), fixes them across 1-2 rounds, produces improved document",
+      "files": ["/tmp/test-plan-with-issues.md"]
+    }
+  ]
+}

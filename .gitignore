@@ -1,5 +1,9 @@
-# ── Claude Code (local per-machine) ──
-.claude/settings.local.json
+# ── Claude Code ──
+# Only hand-written skills/commands are tracked; everything else
+# under .claude/ is per-machine state.
+.claude/*
+!.claude/skills/
+!.claude/commands/
 nvim/.claude/
 
 # ── Credentials & secrets ──

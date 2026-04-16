@@ -1,0 +1,22 @@
+[
+  {"query": "帮我看看这个 plan 写得怎么样，有没有遗漏的地方", "should_trigger": true},
+  {"query": "/codex-review-loop ~/.claude/plans/misty-spinning-orbit.md", "should_trigger": true},
+  {"query": "这个迁移方案我写了一版草稿在 /tmp/migration.md，帮我审查一下可行性和风险", "should_trigger": true},
+  {"query": "我刚写了个 CLAUDE.md，帮我检查下质量，看有没有写得不对的", "should_trigger": true},
+  {"query": "review 一下这个技术文档，重点看完整性和可执行性，文件在 docs/architecture.md", "should_trigger": true},
+  {"query": "帮我 review 这个 PR 的代码改动，看看有没有 bug", "should_trigger": false},
+  {"query": "我有个 Swift 编译错误，帮我看看怎么修", "should_trigger": false},
+  {"query": "帮我把这个 markdown 文件转成 PDF", "should_trigger": false},
+  {"query": "帮我写一个数据库迁移方案", "should_trigger": false},
+  {"query": "这个 JSON 格式不对，帮我修一下", "should_trigger": false},
+  {"query": "我想让 Codex 帮我重构这个模块的代码", "should_trigger": false},
+  {"query": "帮我看看 plans 目录下最新的那个计划文件有没有问题，需要改进的地方列出来", "should_trigger": true},
+  {"query": "这个 README 写得太简单了，帮我审查并改进一下", "should_trigger": true},
+  {"query": "我有一个设计文档想让 AI 帮忙 review，多轮审查那种", "should_trigger": true},
+  {"query": "跑一下 codex review 看看我的 working tree 改动有没有问题", "should_trigger": false},
+  {"query": "帮我对比一下这两个实现方案哪个更好", "should_trigger": false},
+  {"query": "run the test suite and fix any failures", "should_trigger": false},
+  {"query": "review my deployment plan at infra/deploy-plan.md, check for risks and missing steps", "should_trigger": true},
+  {"query": "audit this project proposal document for completeness and feasibility", "should_trigger": true},
+  {"query": "help me write unit tests for the new feature", "should_trigger": false}
+]
