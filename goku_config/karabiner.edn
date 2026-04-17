@@ -79,7 +79,6 @@
     [:i [:open-path "/Applications/iTerm.app"]]
     [:o [:open-path "/Applications/Cursor.app"]]
     [:m [:open-path "/Applications/GitHub Desktop.app"]]
-    [:p [:open-path "/Applications/kitty.app"]]
    ]
   }
   {   :des "o-launch mode"
@@ -104,19 +103,17 @@
   }
   {   :des "alt app launcher + window control (Hyprland style)"
    :rules [
-    [:!Oreturn_or_enter ["open -na kitty"]]
+    [:!Oreturn_or_enter ["open -na Ghostty"]]
     [:!Ow ["open -na 'Google Chrome'"]]
     [:!Oe ["open -na Finder"]]
-    [:!Ot ["open -na Ghostty"]]
     [:!Oc ["open -na ChatGPT"]]
-    [:!Og ["open -na Ghostty"]]
     [:!Ov ["/Applications/Ghostty.app/Contents/MacOS/ghostty -e /Users/hao92/.config/scripts/open-nvim.sh &"]]
     [:!Of ["/opt/homebrew/bin/yabai -m window --toggle zoom-fullscreen"]]
     [:!SOf ["/opt/homebrew/bin/yabai -m window --toggle native-fullscreen"]]
     [:!Oq ["/opt/homebrew/bin/yabai -m window --close"]]
     [:!Os ["/Users/hao92/.config/scripts/scratchpad.sh toggle"]]
     [:!SOs ["/Users/hao92/.config/scripts/scratchpad.sh move"]]
-    [:!Od ["/Users/hao92/.config/scripts/scratchpad-app.sh Reminders"]]
+    [:!Od ["/Users/hao92/.config/scripts/scratchpad-app.sh 'Reminders Kanban'"]]
     [:!Om ["/Users/hao92/.config/scripts/scratchpad-app.sh Marta"]]
    ]
   }
